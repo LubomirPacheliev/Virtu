@@ -4,6 +4,25 @@
 }
 
 .chart {
-	height: 800px;
-	width: 1200px;
+	height: 65vh;
+	width: 65vw;
+}
+
+.order-history {
+	background-color: #131721;
+	height: 35vh;
+	width: 65vw;
+}
+
+.order-history-nav {
+	background-color: #171b25;
+	height: 20%;
+	color: #b2b5be;
+	font-size: 0.8em;
+	font-weight: bold;
+	font-family: sans-serif;
+	border-bottom: #2a2e38 solid 2px;
+	display: flex;
+	align-items: center;
+	text-indent: 1em;
 }

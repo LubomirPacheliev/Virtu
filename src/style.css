@@ -3,15 +3,22 @@
 	padding: 0px;
 }
 
+.App {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	max-height: 100vh;
+}
+
 .chart {
-	height: 65vh;
-	width: 65vw;
+	height: 70vh;
+	width: 75vw;
 }
 
 .order-history {
 	background-color: #131721;
-	height: 35vh;
-	width: 65vw;
+	height: 30vh;
+	width: 75vw;
 }
 
 .order-history-nav {
@@ -25,4 +32,14 @@
 	display: flex;
 	align-items: center;
 	text-indent: 1em;
+}
+
+.technical-analysis {
+	width: 25%;
+	height: 47vh;
+}
+
+.technical-analysis > div {
+	height: 100%;
+	width: 100%;
 }

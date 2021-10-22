@@ -1,5 +1,6 @@
 import Chart from "./components/Chart.js";
 import OrderHistory from "./components/OrderHistory.js";
+import TA from "./components/TA.js";
 import './style.css';
 
 const App = () => {
@@ -19,6 +20,7 @@ const App = () => {
         "container_id": "tradingview_82f39"
       }} />
       <OrderHistory />
+      <TA />
     </div>
   );
 }

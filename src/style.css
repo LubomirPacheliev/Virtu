@@ -43,3 +43,10 @@
 	height: 100%;
 	width: 100%;
 }
+
+.order {
+	height: 53vh;
+	width: 25vw;
+	background-color: #1e222c;
+	color: white;
+}

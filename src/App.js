@@ -1,6 +1,7 @@
 import Chart from "./components/Chart.js";
 import OrderHistory from "./components/OrderHistory.js";
 import TA from "./components/TA.js";
+import Order from "./components/Order.js";
 import './style.css';
 
 const App = () => {
@@ -21,6 +22,7 @@ const App = () => {
       }} />
       <OrderHistory />
       <TA />
+      <Order />
     </div>
   );
 }

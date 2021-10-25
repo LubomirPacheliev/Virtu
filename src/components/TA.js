@@ -5,7 +5,7 @@ const TA = props => {
         <article className="technical-analysis">
             <TechnicalAnalysis widgetProps={
                 {
-                    "interval": "1m",
+                    "interval": "1h",
                     "width": "100%",
                     "isTransparent": false,
                     "height": "100%",

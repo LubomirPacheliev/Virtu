@@ -4,6 +4,19 @@
 	font-family: sans-serif;
 }
 
+body {
+	background-color: black;
+}
+
+input:focus {
+	outline: none;
+}
+
+nav {
+	max-width: 100vw;
+	background-color: white;
+}
+
 .App {
 	display: flex;
 	flex-direction: column;
@@ -23,12 +36,10 @@
 }
 
 .order-history-nav {
-	background-color: #171b25;
 	height: 20%;
 	color: #b2b5be;
 	font-size: 0.8em;
 	font-weight: bold;
-	border-bottom: #2a2e38 solid 2px;
 	display: flex;
 	align-items: center;
 	text-indent: 1em;
@@ -44,9 +55,18 @@
 	width: 100%;
 }
 
+body
+	> div.tv-embed-widget-wrapper
+	> div.tv-embed-widget-wrapper__body.js-embed-widget-body {
+	border: none;
+	border-radius: none;
+	border-bottom: 2px solid #e0e3eb;
+}
+
 .order {
 	height: 53vh;
 	width: 25vw;
+	max-width: 25vw;
 	background-color: #1e222c;
 	color: white;
 }
@@ -82,17 +102,19 @@
 }
 
 .order-form input {
-	width: 400px;
+	max-width: 430px;
+	width: 30em;
 	height: 55px;
 	background-color: #2d313aa8;
 	border: none;
 	margin: 10px 0px;
 	text-indent: 10px;
 	color: white;
+	font-size: 15px;
 }
 
 .order-form button {
-	width: 120px;
+	width: 7em;
 	height: 35px;
 	margin-top: 10px;
 	color: white;

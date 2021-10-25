@@ -10,7 +10,7 @@ const App = () => {
       <Chart widgetProps={{
         "autosize": true,
         "symbol": "BINANCE:BTCUSDT",
-        "interval": "60",
+        "interval": "60m",
         "timezone": "Etc/UTC",
         "theme": "dark",
         "style": "1",

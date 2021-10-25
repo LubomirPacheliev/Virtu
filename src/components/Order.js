@@ -19,7 +19,7 @@ const Order = props => {
     return (
         <article className="order">
             <ul>
-                <li onClick={() => clickOrderBtn('buy')} id="buy">BUY</li>
+                <li onClick={() => clickOrderBtn('buy')} id="buy" style={{color: '#26A69A'}}>BUY</li>
                 <li onClick={() => clickOrderBtn('sell')} id="sell">SELL</li>
             </ul>
             <OrderForm orderType={orderType} />
@@ -32,8 +32,9 @@ const OrderForm = props => {
     return (
         <div className="order-form">
             <p>available: 50 USDT</p>
-            <input type="text" id="price" name="price" placeholder="at price:" />
-            <input type="text" id="amount" name="amount" placeholder="amount:" />
+            <input type="text" placeholder="at price:" />
+            <input type="text" placeholder="amount:" />
+            <input type="text" placeholder="receive: " />
             {orderType === 'buy' && <button className="btn-buy">Buy</button>}
             {orderType === 'sell' && <button className="btn-sell">Sell</button>}
         </div>

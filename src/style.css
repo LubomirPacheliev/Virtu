@@ -1,6 +1,7 @@
 * {
 	margin: 0px;
 	padding: 0px;
+	font-family: sans-serif;
 }
 
 .App {
@@ -27,7 +28,6 @@
 	color: #b2b5be;
 	font-size: 0.8em;
 	font-weight: bold;
-	font-family: sans-serif;
 	border-bottom: #2a2e38 solid 2px;
 	display: flex;
 	align-items: center;
@@ -49,4 +49,62 @@
 	width: 25vw;
 	background-color: #1e222c;
 	color: white;
+}
+
+.order ul {
+	display: flex;
+	flex-direction: row;
+	list-style-type: none;
+	width: min-content;
+}
+
+.order ul li {
+	position: relative;
+	top: 0.6em;
+	left: 0.6em;
+	font-size: 25px;
+	font-weight: 300;
+	margin: 10px;
+}
+
+.order ul li:hover {
+	cursor: pointer;
+}
+
+.order-form {
+	width: fit-content;
+	position: relative;
+	top: 1em;
+	left: 1em;
+	display: flex;
+	flex-direction: column;
+	padding: 10px;
+}
+
+.order-form input {
+	width: 400px;
+	height: 55px;
+	background-color: #2d313aa8;
+	border: none;
+	margin: 10px 0px;
+	text-indent: 10px;
+	color: white;
+}
+
+.order-form button {
+	width: 120px;
+	height: 35px;
+	margin-top: 10px;
+	color: white;
+	font-size: 20px;
+	border: none;
+	align-self: center;
+}
+
+.btn-buy {
+	background-color: #11e43479;
+}
+
+.btn-sell {
+	background-color: #ef5350a4;
 }

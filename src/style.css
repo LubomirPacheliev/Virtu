@@ -14,7 +14,8 @@ input:focus {
 
 nav {
 	max-width: 100vw;
-	background-color: white;
+	height: 60px;
+	background-color: #2d2f31;
 }
 
 .TradePair {
@@ -25,13 +26,13 @@ nav {
 }
 
 .chart {
-	height: 70vh;
+	height: 62vh;
 	width: 75vw;
 }
 
 .order-history {
 	background-color: #131721;
-	height: 30vh;
+	height: 31.65vh;
 	width: 75vw;
 }
 
@@ -64,7 +65,7 @@ body
 }
 
 .order {
-	height: 53vh;
+	height: 46.6vh;
 	width: 25vw;
 	max-width: 25vw;
 	background-color: #1e222c;

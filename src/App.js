@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
 import TradePair from "./components/marketDetails/TradePair.js";
+import MarketList from './components/menu/MarketList.js';
 import './style.scss';
 
 const App = () => {
@@ -15,7 +16,7 @@ const App = () => {
       </nav>
       <Switch>
         <Route path="/market" component={ TradePair } />
-        <Route path="/home" />
+        <Route path="/home" component={ MarketList } />
       </Switch>
     </Router>
   );

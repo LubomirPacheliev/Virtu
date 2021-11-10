@@ -16,8 +16,9 @@ const getTickers = setTickers => {
     const socket = new WebSocket('wss://stream.binance.com:9443/ws/!ticker@arr');
     socket.onopen = () => console.log('connection established.');
     socket.onmessage = msg => {
-        const parsed_msg = JSON.parse(msg.data);
-        setTickers(parsed_msg);
+        const tickers = JSON.parse(msg.data);
+        const sortedTickers = tickers.sort((tickA, tickB) => Number(tickB.c) - Number(tickA.c));
+        setTickers(sortedTickers);
     }
 }
 

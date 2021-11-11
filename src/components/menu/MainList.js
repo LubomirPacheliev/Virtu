@@ -3,8 +3,9 @@ import Ticker from './Ticker.js';
 
 const MainList = props => {
     const {tickers} = props;
-    const groups = tickers.length !== 0 && new Array(Math.floor(tickers.length / 10));
-    if (groups) {
+    let groups = [];
+    if (tickers.length !== 0) {
+        groups = new Array(Math.floor(tickers.length / 10));
         groups.fill(new Array(10));
         let i = 0;
         groups.forEach(group => {
@@ -21,6 +22,7 @@ const MainList = props => {
             <ul>
                 {tickers.map((ticker, i) => <Ticker key={i} ticker={ticker} />)}
             </ul>
+            {groups.map((group, i) => <p key={i} >{i + 1}</p>)}
         </div>
     );
 }

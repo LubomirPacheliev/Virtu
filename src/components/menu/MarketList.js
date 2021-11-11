@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import MainList from './MainList.js';
 
 const MarketList = props => {
     const [tickers, setTickers] = useState([]);
     useEffect(() => getTickers(setTickers), [ setTickers ]);
     return (
         <div className="market-list">
-            <ul>
-                {tickers.map((ticker, i) => <li key={i}>{`${ticker.s}: ${ticker.c}`}</li>)}
-            </ul>
+            <MainList tickers={tickers} />
         </div>
     );
 }

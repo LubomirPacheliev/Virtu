@@ -152,3 +152,21 @@ nav ul {
 		}
 	}
 }
+
+.main-list-component {
+	border: white 1px solid;
+	height: 500px;
+	overflow-x: scroll;
+
+	ul {
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+	}
+
+	li {
+		display: inline;
+		color: white;
+	}
+}

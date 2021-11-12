@@ -158,20 +158,8 @@ nav ul {
 	width: 1100px;
 	overflow-x: scroll;
 	color: white;
-
-	ul {
-		height: 100%;
-		display: flex;
-		flex-direction: column;
-		flex-wrap: wrap;
-	}
-
-	li {
-		display: inline;
-	}
-
 	.tab-p {
-		display: block;
+		margin: 5px;
 	}
 }
 

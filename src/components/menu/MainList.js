@@ -33,17 +33,19 @@ const MainList = props => {
                         <th>Trades</th>
                     </tr>
                 </thead>
+                <tfoot>
+                    <tr>
+                        {
+                            groups
+                            .map((group, i) => <p key={i} onClick={() => setOpenTab(i)}>{i + 1}</p>) // eslint-disable-next-line
+                            .filter(tab => tab.key < openTab + 8 && tab.key > openTab - 1 || tab.key === '0' || tab.key === `${groups.length - 20}`)
+                        }
+                    </tr>
+                </tfoot>
                 <tbody>
                     {typeof groups[openTab] === 'undefined' || groups[openTab].map((ticker, i) => <Ticker key={i} ticker={ticker} isMainList={true} />)}
                 </tbody>
             </table>
-            {/* <ul>
-                {
-                groups
-                .map((group, i) => <p key={i} onClick={() => setOpenTab(i)}>{i + 1}</p>) // eslint-disable-next-line
-                .filter(tab => tab.key < openTab + 8 && tab.key > openTab - 1 || tab.key === '0' || tab.key === `${groups.length - 20}`)
-                }
-            </ul> */}
         </div>
     );
 }

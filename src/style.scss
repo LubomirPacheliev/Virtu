@@ -154,7 +154,6 @@ nav ul {
 }
 
 .main-list-component {
-	border: white 1px solid;
 	height: 500px;
 	width: 1100px;
 	overflow-x: scroll;
@@ -174,4 +173,8 @@ nav ul {
 	.tab-p {
 		display: block;
 	}
+}
+
+.single-ticker {
+	color: white;
 }

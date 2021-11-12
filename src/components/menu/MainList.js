@@ -7,16 +7,16 @@ const MainList = props => {
     const [groups, setGroups] = useState([]);
 
     useEffect(() => {
-        let groups;
         if (tickers.length !== 0) {
-            groups = new Array(Math.floor(tickers.length / 10));
-            groups.fill(new Array(10));
+            let groups = new Array(Math.floor(tickers.length / 10));
+            groups = coolfill(groups);
             let i = 0;
-            groups.forEach(group => {
+            groups.map(group => {
                 for (let j = 0; j < 10; j++) {
-                    group[j] = tickers[i];
+                    group.push(tickers[i]);
                     i++;
                 }
+                return null;
             });
             setGroups(groups);
         }
@@ -26,10 +26,18 @@ const MainList = props => {
         <div className="main-list-component">
             <ul>
                 {groups.map((group, i) => <p key={i} onClick={() => setOpenTab(i)}>Group {i + 1}</p>)}
-                {groups[openTab] === undefined || groups[openTab].map((ticker, i) => <Ticker key={i} ticker={ticker} />)}
+                {typeof groups[openTab] === 'undefined' || groups[openTab].map((ticker, i) => <Ticker key={i} ticker={ticker} />)}
             </ul>
         </div>
     );
+}
+
+const coolfill = (entryArr) => {
+    let outputArr = [];
+    for (let i = 0; i < entryArr.length; i++) {
+        outputArr.push([]);
+    }
+    return outputArr;
 }
  
 export default MainList;

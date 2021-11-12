@@ -27,8 +27,8 @@ const MainList = props => {
             <ul>
                 {
                 groups
-                .map((group, i) => <p key={i} onClick={() => setOpenTab(i)}>{i + 1}</p>)
-                .filter(tab => tab.key < openTab + 8 && tab.key > openTab - 1)
+                .map((group, i) => <p key={i} onClick={() => setOpenTab(i)}>{i + 1}</p>) // eslint-disable-next-line
+                .filter(tab => tab.key < openTab + 8 && tab.key > openTab - 1 || tab.key === '0')
                 }
                 {typeof groups[openTab] === 'undefined' || groups[openTab].map((ticker, i) => <Ticker key={i} ticker={ticker} />)}
             </ul>

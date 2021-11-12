@@ -24,14 +24,26 @@ const MainList = props => {
 
     return (
         <div className="main-list-component">
-            <ul>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Coin Pair</th>
+                        <th>Price</th>
+                        <th>24H Change</th>
+                        <th>Trades</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {typeof groups[openTab] === 'undefined' || groups[openTab].map((ticker, i) => <Ticker key={i} ticker={ticker} />)}
+                </tbody>
+            </table>
+            {/* <ul>
                 {
                 groups
                 .map((group, i) => <p key={i} onClick={() => setOpenTab(i)}>{i + 1}</p>) // eslint-disable-next-line
                 .filter(tab => tab.key < openTab + 8 && tab.key > openTab - 1 || tab.key === '0' || tab.key === `${groups.length - 20}`)
                 }
-                {typeof groups[openTab] === 'undefined' || groups[openTab].map((ticker, i) => <Ticker key={i} ticker={ticker} />)}
-            </ul>
+            </ul> */}
         </div>
     );
 }

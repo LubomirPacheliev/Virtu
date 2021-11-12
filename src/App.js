@@ -12,7 +12,7 @@ const App = () => {
       <nav>
         <ul>
           <li><Link to="/home">Home</Link></li>
-          <li><Link to="/market/:symbol">Market</Link></li>
+          <li><Link to="/market/BTCUSDT">Market</Link></li>
           <li><Link to="/profile">My Portfolio</Link></li>
         </ul>
       </nav>

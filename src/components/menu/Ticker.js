@@ -10,9 +10,12 @@ const Ticker = props => {
     }
 
     return (
-        <li className="single-ticker" onClick={navigate}>
-            {ticker.s}
-        </li>
+        <tr className="single-ticker" onClick={navigate}>
+            <td>{ticker.s}</td>
+            <td>{Number(ticker.c).toFixed(2)}</td>
+            <td>{ticker.P}%</td>
+            <td>{ticker.n}</td>
+        </tr>
     );
 }
  

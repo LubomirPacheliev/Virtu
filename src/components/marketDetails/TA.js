@@ -1,16 +1,15 @@
 import React, { useEffect, useRef } from 'react';
 
-const TA = () => {
-
+const TA = ({symbol}) => {
     return (
         <article className="technical-analysis">
-            <TechnicalAnalysisWidget />
+            <TechnicalAnalysisWidget symbol={symbol} />
         </article>
     );
 }
  
 const TechnicalAnalysisWidget = props => {
-    const { widgetProps } = props;
+    const { widgetProps, symbol } = props;
     const ref = useRef();
 
     useEffect(() => {
@@ -26,7 +25,7 @@ const TechnicalAnalysisWidget = props => {
             "width": "100%",
             "isTransparent": false,
             "height": "100%",
-            "symbol": "BINANCE:BTCUSDT",
+            "symbol": "BINANCE:" + symbol,
             "showIntervalTabs": true,
             "locale": "en",
             "colorTheme": "dark",
@@ -43,7 +42,7 @@ const TechnicalAnalysisWidget = props => {
               }
             }
           }
-    }, [widgetProps])
+    }, [widgetProps, symbol])
 
     return <div ref={ref} />;
 }

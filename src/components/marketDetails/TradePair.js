@@ -3,13 +3,15 @@ import Order from "./Order.js";
 import OrderHistory from "./OrderHistory.js";
 import TA from "./TA.js";
 import Chart from "./Chart.js";
+import { useParams } from 'react-router-dom';
 
 const TradePair = () => {
+  const { symbol } = useParams();
   return (
     <div className="TradePair">
       <Chart widgetProps={{
         "autosize": true,
-        "symbol": "BINANCE:BTCUSDT",
+        "symbol": "BINANCE:" + symbol,
         "interval": "60m",
         "timezone": "Etc/UTC",
         "theme": "dark",
@@ -21,7 +23,7 @@ const TradePair = () => {
         "container_id": "tradingview_82f39"
       }} />
       <OrderHistory />
-      <TA />
+      <TA symbol={symbol} />
       <Order />
     </div>
   );

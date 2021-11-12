@@ -17,7 +17,7 @@ const App = () => {
         </ul>
       </nav>
       <Switch>
-        <Route path="/market" component={ TradePair } />
+        <Route path="/market/:symbol" component={ TradePair } />
         <Route path="/home" component={ MarketList } />
         <Route path="/profile" component={ Profile } />
       </Switch>

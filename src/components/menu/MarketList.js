@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import ChangeList from './Changelist.js';
 import MainList from './MainList.js';
 
 const MarketList = props => {
@@ -7,6 +8,7 @@ const MarketList = props => {
     return (
         <div className="market-list">
             <MainList tickers={tickers} />
+            <ChangeList tickers={tickers} />
         </div>
     );
 }

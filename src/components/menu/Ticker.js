@@ -5,7 +5,7 @@ const Ticker = props => {
 
     return (
         <li className="single-ticker">
-            {ticker.c}
+            {ticker.s}
         </li>
     );
 }

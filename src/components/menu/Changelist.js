@@ -1,0 +1,32 @@
+import React from 'react';
+import Ticker from './Ticker.js';
+
+const ChangeList = ({tickers}) => {
+    return (
+        <div>
+            <TopGainers tickers={tickers}/>
+            <TopLosers tickers={tickers} />
+        </div>
+    );
+}
+
+const TopGainers = ({tickers}) => {
+    const gainers = tickers.sort((tickerA, tickerB) => tickerB.P - tickerA.P).slice(0, 4);
+    return (
+        <div>
+            Top Gainers
+            {gainers.map((ticker, i) => <Ticker key={i} ticker={ticker} />)}
+        </div>
+    );
+}
+
+const TopLosers = ({tickers}) => {
+    const losers = tickers.sort((tickerA, tickerB) => Number(tickerA.p) - Number(tickerB.p)).slice(0, 4);
+    return (
+        <div>
+            Top Losers
+            {losers.map((ticker, i) => <Ticker key={i} ticker={ticker} />)}
+        </div>
+    )
+}
+export default ChangeList;

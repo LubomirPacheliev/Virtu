@@ -25,7 +25,11 @@ const MainList = props => {
     return (
         <div className="main-list-component">
             <ul>
-                {groups.map((group, i) => <p key={i} onClick={() => setOpenTab(i)}>Group {i + 1}</p>)}
+                {
+                groups
+                .map((group, i) => <p key={i} onClick={() => setOpenTab(i)}>{i + 1}</p>)
+                .filter(tab => tab.key < openTab + 8 && tab.key > openTab - 1)
+                }
                 {typeof groups[openTab] === 'undefined' || groups[openTab].map((ticker, i) => <Ticker key={i} ticker={ticker} />)}
             </ul>
         </div>

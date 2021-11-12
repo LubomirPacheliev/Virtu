@@ -15,7 +15,7 @@ const TopGainers = ({tickers}) => {
     return (
         <div style={{"color": "white"}}>
             Top Gainers
-            {gainers.map((ticker, i) => <Ticker key={i} ticker={ticker} />)}
+            {gainers.map((ticker, i) => <Ticker key={i} ticker={ticker} isMainList={false} />)}
         </div>
     );
 }
@@ -25,7 +25,7 @@ const TopLosers = ({tickers}) => {
     return (
         <div style={{"color": "white"}}>
             Top Losers
-            {losers.map((ticker, i) => <Ticker key={i} ticker={ticker} />)}
+            {losers.map((ticker, i) => <Ticker key={i} ticker={ticker} isMainList={false} />)}
         </div>
     )
 }

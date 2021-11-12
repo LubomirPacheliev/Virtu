@@ -34,7 +34,7 @@ const MainList = props => {
                     </tr>
                 </thead>
                 <tbody>
-                    {typeof groups[openTab] === 'undefined' || groups[openTab].map((ticker, i) => <Ticker key={i} ticker={ticker} />)}
+                    {typeof groups[openTab] === 'undefined' || groups[openTab].map((ticker, i) => <Ticker key={i} ticker={ticker} isMainList={true} />)}
                 </tbody>
             </table>
             {/* <ul>

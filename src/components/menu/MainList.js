@@ -39,7 +39,7 @@ const MainList = props => {
                     <tr>
                         {
                             groups
-                            .map((group, i) => <p key={i} onClick={() => setOpenTab(i)}>{i + 1}</p>) // eslint-disable-next-line
+                            .map((group, i) => <td key={i} onClick={() => setOpenTab(i)}>{i + 1}</td>) // eslint-disable-next-line
                             .filter(tab => tab.key < openTab + 8 && tab.key > openTab - 1 || tab.key === '0' || tab.key === `${groups.length - 20}`)
                         }
                     </tr>

@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import Searchbar from './Searchbar.js';
+import React, { useEffect, useState, useRef } from 'react';
 import Ticker from './Ticker.js';
 
 const MainList = props => {
@@ -7,6 +6,7 @@ const MainList = props => {
     const [openTab, setOpenTab] = useState(0);
     const [groups, setGroups] = useState([]);
     const [isSearching, setSearch] = useState(false);
+    const ref = useRef();
 
     useEffect(() => {
         if (tickers.length !== 0) {
@@ -24,8 +24,20 @@ const MainList = props => {
         }
     }, [ tickers ]);
 
+    const search = ref => {
+        const input = ref.current;
+        const searchSymbol = input.value.toUpperCase();
+        if (!searchSymbol) setSearch(false);
+        const regex = new RegExp(searchSymbol);
+        const filteredGroups = groups.map(group => group.filter(innerGroup => regex.test(innerGroup.s)));
+        const resultGroup = filteredGroups.filter(group => group.length > 0).flat();
+        console.log(resultGroup);
+        return resultGroup;
+    }
+
     return (
         <div className="main-list-component">
+            <input type="text" name="search" id="search" ref={ref} onChange={() => setSearch(true)} />;
             <table>
                 <thead>
                     <tr>
@@ -45,11 +57,12 @@ const MainList = props => {
                     </tr>
                 </tfoot>
                 <tbody>
+                    {isSearching && search(ref).map((ticker, i) => <Ticker key={i} ticker={ticker} isMainList={true} />)}
                     {typeof groups[openTab] === 'undefined' 
+                    || isSearching
                     || groups[openTab].map((ticker, i) => <Ticker key={i} ticker={ticker} isMainList={true} />)}
                 </tbody>
             </table>
-            <Searchbar groups={groups} setSearch={setSearch} />
         </div>
     );
 }
@@ -61,5 +74,5 @@ const coolfill = (entryArr) => {
     }
     return outputArr;
 }
- 
+
 export default MainList;

@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import Searchbar from './Searchbar.js';
 import Ticker from './Ticker.js';
 
 const MainList = props => {
     const {tickers} = props;
     const [openTab, setOpenTab] = useState(0);
     const [groups, setGroups] = useState([]);
+    const [isSearching, setSearch] = useState(false);
 
     useEffect(() => {
         if (tickers.length !== 0) {
@@ -43,9 +45,11 @@ const MainList = props => {
                     </tr>
                 </tfoot>
                 <tbody>
-                    {typeof groups[openTab] === 'undefined' || groups[openTab].map((ticker, i) => <Ticker key={i} ticker={ticker} isMainList={true} />)}
+                    {typeof groups[openTab] === 'undefined' 
+                    || groups[openTab].map((ticker, i) => <Ticker key={i} ticker={ticker} isMainList={true} />)}
                 </tbody>
             </table>
+            <Searchbar groups={groups} setSearch={setSearch} />
         </div>
     );
 }

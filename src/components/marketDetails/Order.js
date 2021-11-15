@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 const Order = props => {
     const [orderType, setOrderType] = useState('buy');
+    const { portfolio } = props;
 
     const clickOrderBtn = (orderType) => {
         const sell = document.querySelector('#sell');
@@ -22,16 +23,16 @@ const Order = props => {
                 <li onClick={() => clickOrderBtn('buy')} id="buy" style={{color: '#26A69A'}}>BUY</li>
                 <li onClick={() => clickOrderBtn('sell')} id="sell">SELL</li>
             </ul>
-            <OrderForm orderType={orderType} />
+            <OrderForm orderType={orderType} portfolio={portfolio} />
         </article>
     );
 }
 
 const OrderForm = props => {
-    const orderType = props.orderType;
+    const {orderType, portfolio} = props;
     return (
         <div className="order-form">
-            <p>available: 50 USDT</p>
+            <p>available: {portfolio[0].amount} {portfolio[0].symbol} </p>
             <input type="text" placeholder="at price:" />
             <input type="text" placeholder="amount:" />
             <input type="text" placeholder="receive: " />

@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Order from "./Order.js";
 import OrderHistory from "./OrderHistory.js";
 import TA from "./TA.js";
 import Chart from "./Chart.js";
 import { useParams } from 'react-router-dom';
+import { portfolioContext } from '../../portfolioContext.js';
 
 const TradePair = () => {
   const { symbol } = useParams();
+  const { portfolio, setPortfolio } = useContext(portfolioContext);
+
   return (
     <div className="TradePair">
       <Chart widgetProps={{
@@ -24,7 +27,7 @@ const TradePair = () => {
       }} />
       <OrderHistory />
       <TA symbol={symbol} />
-      <Order />
+      <Order portfolio={portfolio} />
     </div>
   );
 }

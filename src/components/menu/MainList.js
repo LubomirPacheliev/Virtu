@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Ticker from './Ticker.js';
 
-const MainList = props => {
+const MainList = props => { // I want to kill myself because of how bad this component is
     const {tickers} = props;
     const [openTab, setOpenTab] = useState(0);
     const [groups, setGroups] = useState([]);
-    const [isSearching, setSearch] = useState(false);
+    const [searchVal, setSearch] = useState('');
     const ref = useRef();
 
     useEffect(() => {
@@ -25,19 +25,18 @@ const MainList = props => {
     }, [ tickers ]);
 
     const search = ref => {
+        console.log('search')
         const input = ref.current;
         const searchSymbol = input.value.toUpperCase();
-        if (!searchSymbol) setSearch(false);
+        if (searchSymbol.length === 0) setSearch('');
         const regex = new RegExp(searchSymbol);
         const filteredGroups = groups.map(group => group.filter(innerGroup => regex.test(innerGroup.s)));
-        const resultGroup = filteredGroups.filter(group => group.length > 0).flat();
-        console.log(resultGroup);
-        return resultGroup;
+        return filteredGroups.filter(group => group.length > 0).flat();
     }
 
     return (
         <div className="main-list-component">
-            <input type="text" name="search" id="search" ref={ref} onChange={() => setSearch(true)} />;
+            <input type="text" name="search" id="search" ref={ref} onChange={e => setSearch(e.target.value)} />;
             <table>
                 <thead>
                     <tr>
@@ -57,10 +56,10 @@ const MainList = props => {
                     </tr>
                 </tfoot>
                 <tbody>
-                    {isSearching && search(ref).map((ticker, i) => <Ticker key={i} ticker={ticker} isMainList={true} />)}
                     {typeof groups[openTab] === 'undefined' 
-                    || isSearching
+                    || searchVal.length > 0
                     || groups[openTab].map((ticker, i) => <Ticker key={i} ticker={ticker} isMainList={true} />)}
+                    {searchVal && search(ref).map((ticker, i) => <Ticker key={i} ticker={ticker} isMainList={true} />)}
                 </tbody>
             </table>
         </div>

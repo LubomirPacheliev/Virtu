@@ -24,4 +24,8 @@ app.get('/api/markets', async (req, res) => {
     }
 });
 
+app.get('*', (req, res) => {
+    res.sendFile(require('path').resolve('../build/index.html'));
+});
+
 app.listen(port, console.log(`sksksksk on: ${port}`));

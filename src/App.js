@@ -8,7 +8,7 @@ import { portfolioContext } from './portfolioContext.js';
 import './style.scss';
 
 const App = () => {
-  const [portfolio, setPortfolio] = useState([]);
+  const [portfolio, setPortfolio] = useState([{amount: 1000, symbol: 'USDT'}]);
   const value = useMemo(() => ({portfolio, setPortfolio}), [portfolio, setPortfolio]);
 
   return (

@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
+import { portfolioContext } from '../../portfolioContext';
 
 const Profile = () => {
-    const [assets, setAssets] = useState([{amount: 1000, symbol: 'USDT'}]);
+    const {portfolio, setPortfolio} = useContext(portfolioContext);
     return (
         <div>
             <h1>Portfolio</h1>
-            <h2>I currently have: {assets[0].amount} {assets[0].symbol}</h2>
+            <h2>I currently have: {portfolio[0].amount} {portfolio[0].symbol}</h2>
         </div>
     );
 }

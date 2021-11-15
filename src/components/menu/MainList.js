@@ -25,7 +25,6 @@ const MainList = props => { // I want to kill myself because of how bad this com
     }, [ tickers ]);
 
     const search = ref => {
-        console.log('search')
         const input = ref.current;
         const searchSymbol = input.value.toUpperCase();
         if (searchSymbol.length === 0) setSearch('');

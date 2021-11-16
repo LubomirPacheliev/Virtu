@@ -1,7 +1,10 @@
 const express = require('express');
+const path = require('path');
 const app = express();
 const port = 5000;
 const binance = 'https://api.binance.com';
+
+app.use(express.static(path.resolve('../build')));
 
 app.get('/api/order/:symbol', async (req, res) => {
     const symbol = req.params.symbol;
@@ -25,7 +28,7 @@ app.get('/api/markets', async (req, res) => {
 });
 
 app.get('*', (req, res) => {
-    res.sendFile(require('path').resolve('../build/index.html'));
+    res.sendFile(path.resolve('../build/index.html'));
 });
 
 app.listen(port, console.log(`sksksksk on: ${port}`));

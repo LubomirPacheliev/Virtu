@@ -9,7 +9,8 @@ import './style.scss';
 
 const App = () => {
   const [portfolio, setPortfolio] = useState([{amount: 1000, symbol: 'USDT'}]);
-  const value = useMemo(() => ({portfolio, setPortfolio}), [portfolio, setPortfolio]);
+  const [history, setHistory] = useState([]);
+  const value = useMemo(() => ({portfolio: {portfolio, setPortfolio}, history: {history, setHistory}}), [portfolio, history]);
 
   return (
     <Router>

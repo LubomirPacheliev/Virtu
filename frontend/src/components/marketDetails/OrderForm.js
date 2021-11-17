@@ -4,6 +4,7 @@ import { useParams } from "react-router";
 const OrderForm = props => {
     const { orderType } = props;
     const { portfolio } = props.portfolio;
+    const {history, setHistory} = props.history;
     const [currPrice, setCurrPrice] = useState(1);
     const [isInputting, setIsInputting] = useState(false);
     const { symbol } = useParams();
@@ -24,7 +25,7 @@ const OrderForm = props => {
             {/* <label for="receive">receive:</label> */}
             <input type="text" name="receive" value={ (portfolio[0].amount / currPrice) } />
             Cost: {currPrice * (portfolio[0].amount / currPrice)}
-            {orderType === 'buy' && <button className="btn-buy">Buy</button>}
+            {orderType === 'buy' && <button className="btn-buy" onClick={() => setHistory(currPrice)}>Buy</button>}
             {orderType === 'sell' && <button className="btn-sell">Sell</button>}
         </div>
     );

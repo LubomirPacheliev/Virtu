@@ -6,7 +6,7 @@ const Profile = () => {
     return (
         <div>
             <h1>Portfolio</h1>
-            <h2>I currently have: {portfolio[0].amount} {portfolio[0].symbol}</h2>
+            <h2>I currently have: {portfolio.portfolio[0].amount} {portfolio.portfolio[0].symbol}</h2>
         </div>
     );
 }

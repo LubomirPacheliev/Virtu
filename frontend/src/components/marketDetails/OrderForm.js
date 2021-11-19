@@ -13,7 +13,12 @@ const OrderForm = props => {
         const socket = new WebSocket(`wss://stream.binance.com:9443/ws/${symbol.toLowerCase()}@ticker`);
         socket.onmessage = msg => {
             const data = JSON.parse(msg.data);
-            if (!isInputting) setCurrPrice(Number(data.c).toFixed(2));
+            if (!isInputting) {
+                console.log('we setting the price here')
+                setCurrPrice(Number(data.c).toFixed(2));
+            } else {
+                console.log('wat?') // KO?!
+            }
         }
     }, [setCurrPrice, isInputting]);
 

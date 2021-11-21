@@ -19,7 +19,8 @@ const OrderForm = props => {
             const data = JSON.parse(msg.data);
             if (++i <= 1) {
                 setCurrPrice(Number(data.c).toFixed(2));
-                setCurrAmount(portfolio[0].amount / Number(data.c));
+                setCurrAmount(currCost / Number(data.c));
+                setCurrCost((currCost / Number(data.c) * Number(data.c)));
             }
         }
     }, [symbol]);
@@ -30,16 +31,18 @@ const OrderForm = props => {
             <input type="text" name="at-price" value={currPrice} onChange={e => {
                 const newPrice = e.target.value;
                 setCurrPrice(newPrice);
-                setCurrAmount(portfolio[0].amount / newPrice);
+                setCurrAmount(currCost / newPrice);
             }} />
             <input type="text" name="receive" value={currAmount} onChange={e => {
                 const newAmount = e.target.value;
                 setCurrAmount(newAmount);
                 setCurrPrice(portfolio[0].amount / newAmount);
             }} />
-            {/* <input type="text" name="cost" value={currCost} onChange={e => {
-                setCurrCost(Number(e.target.value));
-            }} /> */}
+            <input type="text" name="cost" value={currCost} onChange={e => {
+                const newCost = e.target.value;
+                setCurrCost(newCost);
+                setCurrAmount(newCost / currPrice);
+            }} />
             {orderType === 'buy' && <button className="btn-buy" onClick={() => setHistory(currPrice)}>Buy</button>}
             {orderType === 'sell' && <button className="btn-sell">Sell</button>}
         </div>

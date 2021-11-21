@@ -9,7 +9,8 @@ const OrderHistory = props => {
                 <h1>Order History</h1>
             </div>
             <div className="order-history-list">
-                {history.map((el, i) => <p key={i}>{el.atPrice}</p>)}
+                {history.map((el, i) => 
+                <p key={i}>{el.type} {el.symbol} at {el.atPrice}, received {el.amount} for {el.cost}. </p>)}
             </div>
         </article>
     );

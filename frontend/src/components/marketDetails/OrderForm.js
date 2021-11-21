@@ -42,7 +42,7 @@ const OrderForm = props => {
                 setCurrAmount(newCost / currPrice);
             }} />
             {orderType === 'buy' && <button className="btn-buy" onClick={() => 
-                setHistory((lastHistory, props) => lastHistory.concat([{type: orderType, atPrice: currPrice, amount: currAmount, cost: currCost}])
+                setHistory((lastHistory, props) => lastHistory.concat([{symbol: symbol, type: orderType, atPrice: currPrice, amount: currAmount, cost: currCost}])
                 )}>Buy</button>}
             {orderType === 'sell' && <button className="btn-sell">Sell</button>}
         </div>

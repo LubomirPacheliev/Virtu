@@ -3,7 +3,7 @@ import OrderForm from "./OrderForm.js";
 
 const Order = props => {
     const [orderType, setOrderType] = useState('buy');
-    const { portfolio  } = props;
+    const { portfolio } = props;
 
     const clickOrderBtn = (orderType) => {
         const sell = document.querySelector('#sell');

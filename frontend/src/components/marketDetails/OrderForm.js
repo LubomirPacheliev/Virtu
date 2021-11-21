@@ -44,6 +44,7 @@ const OrderForm = props => {
             }} />
             {orderType === 'buy' && <button className="btn-buy" onClick={() => 
                 history.setHistory((lastHistory, props) => {
+                    console.log('opa')
                     const returnHistory = lastHistory;
                     returnHistory.push({type: orderType, atPrice: currPrice, amount: currAmount, cost: currCost});
                     return returnHistory;

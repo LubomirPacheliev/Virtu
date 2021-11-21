@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from "react-router";
+import { portfolioContext } from '../../portfolioContext';
 
 const OrderForm = props => {
     const { orderType } = props;
-    const { portfolio } = props.portfolio;
-    const {history, setHistory} = props.history;
-
+    const { portfolio, setPortfolio } = props.portfolio;
+    const { history } = useContext(portfolioContext);
     const [currPrice, setCurrPrice] = useState(1);
     const [currAmount, setCurrAmount] = useState(1000);
     const [currCost, setCurrCost] = useState(1000);
-
     const { symbol } = useParams();
 
     useEffect(() => {
@@ -43,7 +42,13 @@ const OrderForm = props => {
                 setCurrCost(newCost);
                 setCurrAmount(newCost / currPrice);
             }} />
-            {orderType === 'buy' && <button className="btn-buy" onClick={() => setHistory(currPrice)}>Buy</button>}
+            {orderType === 'buy' && <button className="btn-buy" onClick={() => 
+                history.setHistory((lastHistory, props) => {
+                    const returnHistory = lastHistory;
+                    returnHistory.push({type: orderType, atPrice: currPrice, amount: currAmount, cost: currCost});
+                    return returnHistory;
+                }
+                )}>Buy</button>}
             {orderType === 'sell' && <button className="btn-sell">Sell</button>}
         </div>
     );

@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { portfolioContext } from '../../portfolioContext';
 
 const Profile = () => {
-    const {portfolio, setPortfolio} = useContext(portfolioContext);
+    const {portfolio} = useContext(portfolioContext);
     return (
         <div>
             <h1>Portfolio</h1>

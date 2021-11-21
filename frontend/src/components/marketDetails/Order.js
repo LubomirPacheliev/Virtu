@@ -3,7 +3,7 @@ import OrderForm from "./OrderForm.js";
 
 const Order = props => {
     const [orderType, setOrderType] = useState('buy');
-    const { portfolio, history } = props;
+    const { portfolio  } = props;
 
     const clickOrderBtn = (orderType) => {
         const sell = document.querySelector('#sell');
@@ -24,7 +24,7 @@ const Order = props => {
                 <li onClick={() => clickOrderBtn('buy')} id="buy" style={{color: '#26A69A'}}>BUY</li>
                 <li onClick={() => clickOrderBtn('sell')} id="sell">SELL</li>
             </ul>
-            <OrderForm orderType={orderType} portfolio={portfolio} history={{history: history.history, setHistory: history.setHistory}} />
+            <OrderForm orderType={orderType} portfolio={portfolio} />
         </article>
     );
 }

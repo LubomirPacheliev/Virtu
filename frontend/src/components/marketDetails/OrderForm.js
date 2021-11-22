@@ -33,14 +33,14 @@ const OrderForm = props => {
         let i = 0;
         socket.onmessage = msg => {
             const data = JSON.parse(msg.data);
-            const price = data.c;
+            const price = Number(data.c);
             if (++i <= 1) {
-                setCurrPrice(Number(price).toFixed(2));
-                setCurrAmount(currCost / Number(price));
-                setCurrCost((currCost / Number(price) * Number(price)));
+                setCurrPrice(price.toFixed(2));
+                setCurrAmount(currCost / price);
+                setCurrCost(currCost / price * price);
             }
             for (const order of orders) {
-                if (Number(order.atPrice) === Number(price)) 
+                if (Number(order.atPrice) === price) 
                 setHistory((lastHistory, props) => lastHistory.concat([order]));
             }
         }

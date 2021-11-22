@@ -39,16 +39,15 @@ const OrderForm = props => {
                 setCurrAmount(currCost / price);
                 setCurrCost(currCost / price * price);
             }
-            if (orders.length > 0) orders.forEach((order, i) => {
+            if (orders.length > 0) orders.map((order, i) => {
                     if (Number(order.atPrice) <= price + 0.15 && Number(order.atPrice) >= price - 0.15) {
                         orders.splice(i, 1);
                         setHistory(lastHistory => lastHistory.concat([order]));
-                        return null;
                     }
                 }
             );
         }
-    }, [...orderProps]);
+    }, [symbol]);
 
     return (
         <portfolioContext.Provider value={orderProps}>

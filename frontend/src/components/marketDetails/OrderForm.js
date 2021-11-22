@@ -39,7 +39,6 @@ const OrderForm = props => {
                 setCurrAmount(currCost / price);
                 setCurrCost(currCost / price * price);
             }
-            console.log(orders);
             if (orders.length > 0) orders.map((order, i) => {
                     if (Number(order.atPrice) <= price + 0.15 && Number(order.atPrice) >= price - 0.15) {
                         orders.splice(i, 1);

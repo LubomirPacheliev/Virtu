@@ -27,7 +27,7 @@ const OrderForm = props => {
         symbol: {firstSymbol, secondSymbol},
         orderType
     };
-
+ 
     useEffect(() => {
         const socket = new WebSocket(`wss://stream.binance.com:9443/ws/${symbol.toLowerCase()}@ticker`);
         let i = 0;

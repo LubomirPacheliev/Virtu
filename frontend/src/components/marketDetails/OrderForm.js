@@ -1,7 +1,8 @@
 import React, { useEffect, useState} from 'react';
 import { useParams } from "react-router";
-import { portfolioContext } from '../../portfolioContext';
-import BuyForm from './BuyForm';
+import { portfolioContext } from '../../portfolioContext.js';
+import BuyForm from './BuyForm.js';
+import SellForm from './SellForm.js';
 
 const OrderForm = props => {
     const { orderType } = props;
@@ -42,9 +43,8 @@ const OrderForm = props => {
     return (
         <portfolioContext.Provider value={orderProps}>
             <div className="order-form">
-                {orderType === 'buy' && 
-                <BuyForm />}
-                {orderType === 'sell' && <button className="btn-sell">Sell</button>}
+                {orderType === 'buy' && <BuyForm />}
+                {orderType === 'sell' && <SellForm />}
             </div>
         </portfolioContext.Provider>
     );

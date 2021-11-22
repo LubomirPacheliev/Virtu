@@ -16,19 +16,19 @@ const SellForm = () => {
     return (
         <div>
             <p>available: {portfolio[0].amount} {portfolio[0].symbol}</p>
-            <label for="at-price">At {secondSymbol}</label>
+            <label htmlFor="at-price">At {secondSymbol}</label>
             <input type="text" name="at-price" value={currPrice} onChange={e => {
                 const newPrice = e.target.value;
                 setCurrPrice(newPrice);
                 setCurrAmount(currCost * newPrice);
             }} />
-            <label for="receive">Receive {secondSymbol}</label>
+            <label htmlFor="receive">Receive {secondSymbol}</label>
             <input type="text" name="receive" value={currAmount} onChange={e => {
                 const newAmount = e.target.value;
                 setCurrAmount(newAmount);
                 setCurrPrice(portfolio[0].amount * newAmount);
             }} />
-            <label for="cost">Cost in {firstSymbol}</label>
+            <label htmlFor="cost">Cost in {firstSymbol}</label>
             <input type="text" name="cost" value={currCost} onChange={e => {
                 const newCost = e.target.value;
                 setCurrCost(newCost);

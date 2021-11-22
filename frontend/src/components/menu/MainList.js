@@ -10,12 +10,13 @@ const MainList = props => { // I want to kill myself because of how bad this com
 
     useEffect(() => {
         if (tickers.length !== 0) {
-            let groups = new Array(Math.floor(tickers.length / 10));
+            const filteredTickers = tickers.filter(ticker => ticker.s.slice(3).toLowerCase() === 'usdt' || ticker.s.slice(2).toLowerCase() === 'usdt');
+            let groups = new Array(Math.floor(filteredTickers.length / 10));
             groups = coolfill(groups);
             let i = 0;
             groups.map(group => {
                 for (let j = 0; j < 10; j++) {
-                    group.push(tickers[i]);
+                    group.push(filteredTickers[i]);
                     i++;
                 }
                 return null;

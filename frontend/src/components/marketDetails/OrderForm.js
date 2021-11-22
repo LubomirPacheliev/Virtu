@@ -6,7 +6,7 @@ import SellForm from './SellForm.js';
 
 const OrderForm = props => {
     const { orderType } = props;
-    const { portfolio, setPortfolio } = props.portfolio;
+    const { portfolio } = props.portfolio;
     const { setHistory } = props.history;
 
     const [currPrice, setCurrPrice] = useState(1);
@@ -39,15 +39,16 @@ const OrderForm = props => {
                 setCurrAmount(currCost / price);
                 setCurrCost(currCost / price * price);
             }
-            if (orders.length > 0) orders.map((order, i) => {
+            if (orders.length > 0) orders.forEach((order, i) => {
                     if (Number(order.atPrice) <= price + 0.15 && Number(order.atPrice) >= price - 0.15) {
                         orders.splice(i, 1);
-                        setHistory((lastHistory, props) => lastHistory.concat([order]));
+                        setHistory(lastHistory => lastHistory.concat([order]));
+                        return null;
                     }
                 }
             );
         }
-    }, [symbol]);
+    }, [...orderProps]);
 
     return (
         <portfolioContext.Provider value={orderProps}>

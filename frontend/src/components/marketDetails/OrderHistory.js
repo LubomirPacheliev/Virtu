@@ -2,7 +2,6 @@ import React from 'react';
 
 const OrderHistory = props => {
     const { history } = props;
-    console.log(history);
     return ( 
         <article className="order-history">
             <div className="order-history-nav">

@@ -10,7 +10,8 @@ const OrderHistory = props => {
             </div>
             <div className="order-history-list">
                 {history.map((el, i) => 
-                <p key={i}>{el.type} {el.symbol} at {el.atPrice}, received {el.amount} for {el.cost}. </p>)}
+                <p key={i}>{el.type} {el.symbol.firstSymbol} at {el.atPrice} 
+                {el.symbol.secondSymbol}, received {el.amount} {el.symbol.firstSymbol} for {el.cost.toFixed(2)} {el.symbol.secondSymbol}. </p>)}
             </div>
         </article>
     );

@@ -9,6 +9,8 @@ const OrderForm = props => {
     const [currAmount, setCurrAmount] = useState(1000);
     const [currCost, setCurrCost] = useState(1000);
     const { symbol } = useParams();
+    const firstSymbol = symbol.slice(2).toLowerCase() === 'usdt' ? symbol.slice(0, 2) : symbol.slice(0, 3);
+    const secondSymbol =  firstSymbol.length === 3 ? symbol.slice(3) : symbol.slice(4);
 
     useEffect(() => {
         const socket = new WebSocket(`wss://stream.binance.com:9443/ws/${symbol.toLowerCase()}@ticker`);

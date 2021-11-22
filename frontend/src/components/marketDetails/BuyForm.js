@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { portfolioContext } from '../../portfolioContext';
 
-const BuyForm = props => {
+const BuyForm = () => {
     const {
         portfolio, 
         setHistory, 
@@ -9,7 +10,7 @@ const BuyForm = props => {
         currCost, setCurrCost,
         symbol,
         orderType
-    } = props.buyProps;
+    } = useContext(portfolioContext);
     const {firstSymbol, secondSymbol} = symbol;
 
     return (

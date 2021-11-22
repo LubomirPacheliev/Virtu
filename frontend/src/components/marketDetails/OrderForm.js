@@ -28,17 +28,17 @@ const OrderForm = props => {
     return (
         <div className="order-form">
             <p>available: {portfolio[0].amount} {portfolio[0].symbol} </p>
-            <input type="text" name="at-price" value={currPrice} onChange={e => {
+            <input type="text" name="at-price" value={currPrice + ' ' + secondSymbol} onChange={e => {
                 const newPrice = e.target.value;
                 setCurrPrice(newPrice);
                 setCurrAmount(currCost / newPrice);
             }} />
-            <input type="text" name="receive" value={currAmount} onChange={e => {
+            <input type="text" name="receive" value={currAmount + ' ' + firstSymbol} onChange={e => {
                 const newAmount = e.target.value;
                 setCurrAmount(newAmount);
                 setCurrPrice(portfolio[0].amount / newAmount);
             }} />
-            <input type="text" name="cost" value={currCost} onChange={e => {
+            <input type="text" name="cost" value={currCost + ' ' + secondSymbol} onChange={e => {
                 const newCost = e.target.value;
                 setCurrCost(newCost);
                 setCurrAmount(newCost / currPrice);

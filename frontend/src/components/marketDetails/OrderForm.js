@@ -20,7 +20,7 @@ const OrderForm = props => {
 
     const orderProps = {
         portfolio, 
-        setOrders, 
+        orders, setOrders, 
         currPrice, setCurrPrice, 
         currAmount, setCurrAmount,
         currCost, setCurrCost,
@@ -39,10 +39,14 @@ const OrderForm = props => {
                 setCurrAmount(currCost / price);
                 setCurrCost(currCost / price * price);
             }
-            for (const order of orders) {
-                if (Number(order.atPrice) === price) 
-                setHistory((lastHistory, props) => lastHistory.concat([order]));
-            }
+
+            if (orders.length > 0) orders.map((order, i) => {
+                    if (Number(order.atPrice) >= price + 0.1 && Number(order.atPrice) <= price + 0.1) {
+                        orders.splice(i, 1);
+                        setHistory((lastHistory, props) => lastHistory.concat([order]));
+                    }
+                }
+            );
         }
     }, [symbol]);
 

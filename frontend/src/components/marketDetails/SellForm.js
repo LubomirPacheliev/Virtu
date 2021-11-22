@@ -4,7 +4,7 @@ import { portfolioContext } from '../../portfolioContext';
 const SellForm = () => {
     const {
         portfolio, 
-        setOrders, 
+        orders, setOrders, 
         currPrice, setCurrPrice, 
         currAmount, setCurrAmount,
         currCost, setCurrCost,
@@ -35,7 +35,7 @@ const SellForm = () => {
                 setCurrAmount(newCost * currPrice);
             }} />
             <button className="btn-buy" onClick={() => 
-                setOrders((lastOrders, props) => lastOrders.concat([{symbol: {firstSymbol, secondSymbol}, type: orderType, atPrice: currPrice, amount: currAmount, cost: currCost}])
+                setOrders((lastOrders, props) => orders.push({symbol: {firstSymbol, secondSymbol}, type: orderType, atPrice: currPrice, amount: currAmount, cost: currCost})
             )}>Buy</button>
         </div>
     );

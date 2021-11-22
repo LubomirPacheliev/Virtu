@@ -12,6 +12,7 @@ const OrderForm = props => {
     const [currPrice, setCurrPrice] = useState(1);
     const [currAmount, setCurrAmount] = useState(1000);
     const [currCost, setCurrCost] = useState(1000);
+    const [orders, setOrders] = useState([]);
 
     const { symbol } = useParams();
     const firstSymbol = symbol.slice(2).toLowerCase() === 'usdt' ? symbol.slice(0, 2) : symbol.slice(0, 3);
@@ -19,7 +20,7 @@ const OrderForm = props => {
 
     const orderProps = {
         portfolio, 
-        setHistory, 
+        setOrders, 
         currPrice, setCurrPrice, 
         currAmount, setCurrAmount,
         currCost, setCurrCost,
@@ -32,10 +33,15 @@ const OrderForm = props => {
         let i = 0;
         socket.onmessage = msg => {
             const data = JSON.parse(msg.data);
+            const price = data.c;
             if (++i <= 1) {
-                setCurrPrice(Number(data.c).toFixed(2));
-                setCurrAmount(currCost / Number(data.c));
-                setCurrCost((currCost / Number(data.c) * Number(data.c)));
+                setCurrPrice(Number(price).toFixed(2));
+                setCurrAmount(currCost / Number(price));
+                setCurrCost((currCost / Number(price) * Number(price)));
+            }
+            for (const order of orders) {
+                if (Number(order.atPrice) === Number(price)) 
+                setHistory((lastHistory, props) => lastHistory.concat([order]));
             }
         }
     }, [symbol]);

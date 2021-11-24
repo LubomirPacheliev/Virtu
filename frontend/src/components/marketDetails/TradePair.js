@@ -8,7 +8,6 @@ import { portfolioContext } from '../../portfolioContext.js';
 
 const TradePair = () => {
   const { symbol } = useParams();
-  const { portfolio, history } = useContext(portfolioContext);
 
   return (
     <div className="TradePair">
@@ -25,9 +24,9 @@ const TradePair = () => {
         "allow_symbol_change": true,
         "container_id": "tradingview_82f39"
       }} />
-      <OrderHistory history={history.history} />
+      <OrderHistory />
       <TA symbol={symbol} />
-      <Order portfolio={portfolio} history={history} />
+      <Order />
     </div>
   );
 }

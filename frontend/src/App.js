@@ -1,17 +1,12 @@
-import React, { useMemo, useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
 import TradePair from "./components/marketDetails/TradePair.js";
 import MarketList from './components/menu/MarketList.js';
 import Profile from './components/Profile/Profile.js';
-import { portfolioContext } from './portfolioContext.js';
 import './style.scss';
 
 const App = () => {
-  const [portfolio, setPortfolio] = useState([{amount: 1000, symbol: 'USDT'}]);
-  const [history, setHistory] = useState([]);
-  const value = useMemo(() => ({portfolio: {portfolio, setPortfolio}, history: {history, setHistory}}), [portfolio, history]);
-
   return (
     <Router>
       <nav>
@@ -22,11 +17,9 @@ const App = () => {
         </ul>
       </nav>
       <Switch>
-        <portfolioContext.Provider value={value} >
-          <Route path="/market/:symbol" component={ TradePair } />
-          <Route path="/home" component={ MarketList } />
-          <Route path="/profile" component={ Profile } />
-        </portfolioContext.Provider>
+        <Route path="/market/:symbol" component={ TradePair } />
+        <Route path="/home" component={ MarketList } />
+        <Route path="/profile" component={ Profile } />
       </Switch>
     </Router>
   );

@@ -7,8 +7,8 @@ const OrderHistory = () => {
 
     const returnOrderListing = order => {
         const {orderType, firstSymbol, secondSymbol, atPrice, atAmount, atCost} = order;
-        if (orderType === 'buy') return <p>{orderType} at {atPrice} {secondSymbol}, received {atAmount} {firstSymbol} for {atCost} {secondSymbol}</p>;
-        if (orderType === 'sell') return <p>{orderType} at {atPrice} {secondSymbol}, received {atAmount} {secondSymbol} for {atCost} {firstSymbol}</p>;
+        if (orderType === 'buy') return <p>{orderType.toUpperCase()} at {atPrice} {secondSymbol}, received {atAmount} {firstSymbol} for {atCost} {secondSymbol}</p>;
+        if (orderType === 'sell') return <p>{orderType.toUpperCase()} at {atPrice} {secondSymbol}, received {atAmount} {secondSymbol} for {atCost} {firstSymbol}</p>;
     }
 
     return ( 

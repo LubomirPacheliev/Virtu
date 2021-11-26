@@ -5,7 +5,7 @@ import SellForm from './SellForm';
 import { portfolioContext } from '../../portfolioContext.js';
 
 const OrderForm = props => {
-    const [orderType, setOrderType] = useState('buy');
+    const orderType = props.orderType;
     const [atPrice, setAtPrice] = useState(1);
     const [atAmount, setAtAmount] = useState(1000);
     const [atCost, setAtCost] = useState(1000);
@@ -37,7 +37,7 @@ const OrderForm = props => {
     return (
         <div className="order-form">
             <portfolioContext.Provider value={orderProps}>
-                {orderType === 'buy' && <BuyForm orderProps={orderProps} />}
+                {orderType === 'buy' && <BuyForm />}
                 {orderType === 'sell' && <SellForm />}
             </portfolioContext.Provider>
         </div>

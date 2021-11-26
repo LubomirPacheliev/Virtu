@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { portfolioContext } from '../../portfolioContext';
 
-const BuyForm = props => {
+const BuyForm = () => {
     const {
         orderType,
         firstSymbol, secondSymbol,
@@ -21,6 +21,8 @@ const BuyForm = props => {
         e.preventDefault();
         setHistory(lastHistory => lastHistory.concat([{orderType, firstSymbol, secondSymbol, atPrice, atAmount, atCost}]));
     }
+
+    useEffect(() => setAtAmount(atCost / atPrice), []);
 
     return (
         <div>

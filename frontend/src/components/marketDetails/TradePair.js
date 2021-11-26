@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState } from 'react';
 import Order from "./Order.js";
 import OrderHistory from "./OrderHistory.js";
 import TA from "./TA.js";
@@ -8,6 +8,7 @@ import { portfolioContext } from '../../portfolioContext.js';
 
 const TradePair = () => {
   const { symbol } = useParams();
+  const [history, setHistory] = useState([]);
 
   return (
     <div className="TradePair">
@@ -24,9 +25,11 @@ const TradePair = () => {
         "allow_symbol_change": true,
         "container_id": "tradingview_82f39"
       }} />
-      <OrderHistory />
-      <TA symbol={symbol} />
-      <Order />
+      <portfolioContext.Provider value={{history, setHistory}}>
+        <OrderHistory />
+        <TA symbol={symbol} />
+        <Order />
+      </portfolioContext.Provider>
     </div>
   );
 }

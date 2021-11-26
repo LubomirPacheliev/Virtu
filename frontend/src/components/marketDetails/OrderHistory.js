@@ -7,7 +7,8 @@ const OrderHistory = () => {
 
     const returnOrderListing = order => {
         const {orderType, firstSymbol, secondSymbol, atPrice, atAmount, atCost} = order;
-        return <p>{orderType} at {atPrice}, received {atAmount}{firstSymbol} for {atCost}{secondSymbol}</p>
+        if (orderType === 'buy') return <p>{orderType} {secondSymbol} at {atPrice}, received {atAmount} {firstSymbol} for {atCost} {secondSymbol}</p>;
+        if (orderType === 'sell') return <p>{orderType} {secondSymbol} at {atPrice}, received {atAmount} {secondSymbol} for {atCost} {firstSymbol}</p>;
     }
 
     return ( 

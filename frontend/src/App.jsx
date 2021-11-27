@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
-import TradePair from "./components/marketDetails/TradePair.js";
-import MarketList from './components/menu/MarketList.js';
-import Profile from './components/Profile/Profile.js';
+import TradePair from "./components/marketDetails/TradePair.jsx";
+import MarketList from './components/menu/MarketList.jsx';
+import Profile from './components/Profile/Profile.jsx';
 import './style.scss';
 
 const App = () => {

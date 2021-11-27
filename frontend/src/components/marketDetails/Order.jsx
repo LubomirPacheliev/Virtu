@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import OrderForm from "./OrderForm.js";
+import OrderForm from "./OrderForm.jsx";
 
 const Order = () => {
     const [orderType, setOrderType] = useState('buy');

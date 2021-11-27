@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import BuyForm from './BuyForm';
 import SellForm from './SellForm';
-import { portfolioContext } from '../../portfolioContext.js';
+import { portfolioContext } from '../../portfolioContext.jsx';
 
 const OrderForm = props => {
     const orderType = props.orderType;

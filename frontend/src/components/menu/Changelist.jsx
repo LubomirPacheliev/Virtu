@@ -1,5 +1,5 @@
 import React from 'react';
-import Ticker from './Ticker.js';
+import Ticker from './Ticker.jsx';
 
 const ChangeList = props => {
     const tickers = props.tickers.filter(ticker => ticker.s.slice(3).toLowerCase() === 'usdt' || ticker.s.slice(2).toLowerCase() === 'usdt');

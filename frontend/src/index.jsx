@@ -8,3 +8,9 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
+
+// Snowpack Plugins
+
+if (undefined /* [snowpack] import.meta.hot */ ) {
+  undefined /* [snowpack] import.meta.hot */ .accept();
+}

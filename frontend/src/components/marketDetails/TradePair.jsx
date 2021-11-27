@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import Order from "./Order.js";
-import OrderHistory from "./OrderHistory.js";
-import TA from "./TA.js";
-import Chart from "./Chart.js";
+import Order from "./Order.jsx";
+import OrderHistory from "./OrderHistory.jsx";
+import TA from "./TA.jsx";
+import Chart from "./Chart.jsx";
 import { useParams } from 'react-router-dom';
-import { portfolioContext } from '../../portfolioContext.js';
+import { portfolioContext } from '../../portfolioContext.jsx';
 
 const TradePair = () => {
   const { symbol } = useParams();

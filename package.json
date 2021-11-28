@@ -9,8 +9,7 @@
     "node-sass": "^4.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-router-dom": "^5.3.0",
-    "snowpack": "^3.8.8"
+    "react-router-dom": "^5.3.0"
   },
   "scripts": {
     "start": "snowpack dev",
@@ -38,9 +37,10 @@
   },
   "devDependencies": {
     "@snowpack/plugin-react-refresh": "^2.5.0",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "snowpack": "^3.8.8"
   },
-  "main": "index.js",
+  "main": "index.jsx",
   "repository": "https://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@github.com/LubomirPacheliev/virtual_portfolio.git",
   "author": "LubomirP <lubomirpacheliev@gmail.com>",
   "license": "MIT"

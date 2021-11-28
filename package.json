@@ -41,7 +41,6 @@
     "snowpack": "^3.8.8"
   },
   "main": "index.jsx",
-  "repository": "https://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@github.com/LubomirPacheliev/virtual_portfolio.git",
   "author": "LubomirP <lubomirpacheliev@gmail.com>",
   "license": "MIT"
 }

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { portfolioContext } from '../../portfolioContext';
+import { portfolioContext } from '../../utils/portfolioContext';
 
 const BuyForm = () => {
     const {

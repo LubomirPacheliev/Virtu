@@ -1,5 +1,9 @@
 import React, { createContext } from 'react';
-export const FirebaseContext = createContext(null);
+import app from 'firebase/app';
+
+const FirebaseContext = createContext(null);
+export { FirebaseContext };
+
 export default ({ children }) => {
     if (!app.apps.length) {
       app.initializeApp({
@@ -10,7 +14,7 @@ export default ({ children }) => {
         storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
         messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
         appId: process.env.REACT_APP_FIREBASE_APP_ID,
-      })
+      });
     }
     return (
       <FirebaseContext.Provider value={ app }>

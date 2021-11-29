@@ -1,5 +1,4 @@
-import React, { useContext } from 'react';
-import { portfolioContext } from '../../portfolioContext';
+import React from 'react';
 
 const Profile = () => {
     return (

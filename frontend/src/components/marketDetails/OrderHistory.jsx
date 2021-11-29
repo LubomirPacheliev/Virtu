@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import { portfolioContext } from '../../portfolioContext';
+import { portfolioContext } from '../../utils/portfolioContext';
 
 const OrderHistory = () => {
     const { history } = useContext(portfolioContext);

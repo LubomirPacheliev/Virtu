@@ -8,6 +8,9 @@ module.exports = {
     '@snowpack/plugin-react-refresh',
     '@snowpack/plugin-sass'
   ],
+  packageOptions: {
+    namedExports: ['firebase/app']
+  },
   devOptions: {
     port: 4000
   }

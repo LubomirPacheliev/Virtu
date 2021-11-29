@@ -1,7 +1,8 @@
 module.exports = {
   mount: {
     './frontend/src': '/',
-    './frontend/public': '/'
+    './frontend/public': '/',
+    './frontend/utils': '/'
   },
   plugins: [
     '@snowpack/plugin-react-refresh',

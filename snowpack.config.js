@@ -4,7 +4,8 @@ module.exports = {
     './frontend/public': '/'
   },
   plugins: [
-    '@snowpack/plugin-react-refresh'
+    '@snowpack/plugin-react-refresh',
+    '@snowpack/plugin-sass'
   ],
   devOptions: {
     port: 4000

@@ -4,7 +4,7 @@ import OrderHistory from "./OrderHistory.jsx";
 import TA from "./TA.jsx";
 import Chart from "./Chart.jsx";
 import { useParams } from 'react-router-dom';
-import { portfolioContext } from '../../portfolioContext.jsx';
+import { portfolioContext } from '../../utils/portfolioContext.jsx';
 
 const TradePair = () => {
   const { symbol } = useParams();

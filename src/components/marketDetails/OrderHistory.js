@@ -15,7 +15,8 @@ const OrderHistory = () => {
             <h1 className="order-history-h1">history</h1>
             <article className="order-history">
             <div className="order-history-list">
-                {history.reverse().map((order, i) => returnOrderListing(order))}
+                {history.length > 0 && history.reverse().map((order, i) => returnOrderListing(order))}
+                {history.length > 0 || <p>You haven't done any trades yet</p>}
             </div>
         </article>
         </div>

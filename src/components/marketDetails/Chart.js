@@ -25,10 +25,10 @@ const Chart = props => {
             "toolbar_bg": "rgba(0, 0, 0, 0.8)",
             "hide_top_toolbar": false,
             "hide_side_toolbar": false,
-            "withdateranges": true,
+            "withdateranges": false,
             "save_image": true,
             "enable_publishing": false,
-            "container_id": 'tradingview_82f39',
+            "container_id": 'tradingview_05e64',
             ...widgetProps
           });
         } 
@@ -47,7 +47,7 @@ const Chart = props => {
     }, [widgetProps]);
 
     return ( 
-        <article className="chart" id="tradingview_82f39" ref={ref}>
+        <article className="chart" id="tradingview_05e64" ref={ref}>
         </article>
     );
 }

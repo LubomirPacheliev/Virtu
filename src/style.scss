@@ -177,3 +177,21 @@ article.balances {
 		width: 20px;
 	}
 }
+
+// BEGINING OF TRADEPAIR
+// BEGINING OF TRADEPAIR
+// BEGINING OF TRADEPAIR
+// BEGINING OF TRADEPAIR
+
+.TradePair {
+	height: 100vh;
+	@include setFlex(row, flex-start);
+	flex-wrap: wrap;
+
+	.chart {
+		justify-self: flex-start;
+		flex-basis: 80%;
+		max-height: 500px;
+		height: 500px;
+	}
+}

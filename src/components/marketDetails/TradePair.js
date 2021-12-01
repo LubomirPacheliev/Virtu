@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Order from "./Order.js";
 import OrderHistory from "./OrderHistory.js";
-import TA from "./TA.js";
 import Chart from "./Chart.js";
 import { useParams } from 'react-router-dom';
 import { portfolioContext } from '../../utils/portfolioContext';
@@ -17,17 +16,16 @@ const TradePair = () => {
         "symbol": "BINANCE:" + symbol,
         "interval": "60m",
         "timezone": "Etc/UTC",
-        "theme": "dark",
+        "theme": "light",
         "style": "1",
         "locale": "en",
         "toolbar_bg": "#f1f3f6",
         "enable_publishing": false,
-        "allow_symbol_change": true,
-        "container_id": "tradingview_82f39"
+        "allow_symbol_change": false,
+        "container_id": "tradingview_05e64"
       }} />
       <portfolioContext.Provider value={{history, setHistory}}>
         <OrderHistory />
-        <TA symbol={symbol} />
         <Order />
       </portfolioContext.Provider>
     </div>

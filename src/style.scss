@@ -204,31 +204,57 @@ article.balances {
 		color: $text;
 		width: 25%;
 		height: 400px;
-		margin: 5%;		
+		margin: 0% 3%;
+		margin-top: 6%;		
 		box-shadow: 1px 5px 10px 2px #3f96bed8;
 		background-color: $background;
 
 		ul {
 			@include setFlex(row, flex-start);
+			position: relative;
+			right: 3%;
 			list-style: none;
 
 			li {
+				display: inline;
 				margin: 5px;
+				font-size: 1.4em;
 			}
 		}
 
 		.order-form {
 			@include setFlex(column, flex-start);
+			@include fillParent();
+			position: relative;
+			bottom: 1em;
+			left: 1em;
+			padding: 10px;
 
-			button {
-				width: 7em;
-				height: 35px;
-				margin-top: 10px;
-				color: white;
-				font-size: 20px;
+			input {
+				max-width: 430px;
+				width: 20em;
+				height: 3em;
+				background-color: #2d313aa8;
 				border: none;
-				align-self: center;
+				margin: 5px 0px;
+				text-indent: 10px;
+				color: white;
+				font-size: 15px;
 			}
+			
+			div {
+				button {
+					width: 7em;
+					height: 35px;
+					margin-top: 5px;
+					color: white;
+					font-size: 20px;
+					border: none;
+					position: relative;
+					left: 25%;
+				}
+			}
+			
 			.btn-buy {
 				background-color: #11e43479;
 			}

@@ -8,11 +8,11 @@ const Order = () => {
         const sell = document.querySelector('#sell');
         const buy = document.querySelector('#buy');
         if (orderType === 'buy') {
-            sell.style.color = 'white';
+            sell.style.color = 'black';
             buy.style.color = '#26A69A';
         } else {
             sell.style.color = '#EF5350';
-            buy.style.color = 'white';
+            buy.style.color = 'black';
         }
         setOrderType(orderType);
     }

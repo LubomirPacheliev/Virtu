@@ -13,8 +13,8 @@ const OrderHistory = () => {
 
     return ( 
         <article className="order-history">
-            <div className="order-history-nav">
-                <h1>Order History</h1>
+            <div className="order-history-head">
+                <h1>your order history</h1>
             </div>
             <div className="order-history-list">
                 {history.map((order, i) => returnOrderListing(order))}

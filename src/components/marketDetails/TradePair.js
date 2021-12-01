@@ -27,7 +27,7 @@ const TradePair = () => {
       }} />
       <portfolioContext.Provider value={{history, setHistory}}>
         <Order />
-        {/* <OrderHistory /> */}
+        <OrderHistory />
       </portfolioContext.Provider>
     </div>
     </section>

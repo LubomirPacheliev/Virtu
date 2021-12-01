@@ -188,11 +188,12 @@ article.balances {
 
 .TradePair {
 	@include setFlex(row, flex-start);
-	flex-wrap: nowrap;
+	flex-wrap: wrap;
 	height: 100vh;
+	max-width: 82vw;
 
 	.chart {
-		width: 1000px;
+		width: 65%;
 		height: 400px;
 		border: none;
 		box-shadow: 2px 105px 10px 2px #3f96bed8;
@@ -262,5 +263,10 @@ article.balances {
 				background-color: #ef5350a4;
 			}
 		}
+	}
+
+	article.order-history {
+		color: $contrast-text;
+
 	}
 }

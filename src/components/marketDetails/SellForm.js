@@ -27,7 +27,7 @@ const BuyForm = () => {
     return (
         <div>
             <p>available: 1000 USDT</p>
-            <label htmlFor="at-price">At {secondSymbol}</label>
+            <label htmlFor="at-price">At {secondSymbol}</label><br />
             <input type="text" name="at-price" value={atPrice} />
             <label htmlFor="receive">Receive {secondSymbol}</label>
             <input type="text" name="receive" value={atAmount} />

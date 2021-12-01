@@ -10,9 +10,10 @@ const TradePair = () => {
   const [history, setHistory] = useState([]);
 
   return (
-    <div className="TradePair">
+    <section className="tradepair-section">
+      <h1 className="h1-portfolio">{symbol}</h1>
+      <div className="TradePair">
       <Chart widgetProps={{
-        "autosize": true,
         "symbol": "BINANCE:" + symbol,
         "interval": "60m",
         "timezone": "Etc/UTC",
@@ -25,10 +26,11 @@ const TradePair = () => {
         "container_id": "tradingview_05e64"
       }} />
       <portfolioContext.Provider value={{history, setHistory}}>
-        <OrderHistory />
         <Order />
+        {/* <OrderHistory /> */}
       </portfolioContext.Provider>
     </div>
+    </section>
   );
 }
 

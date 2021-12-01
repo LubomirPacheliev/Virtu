@@ -58,7 +58,7 @@ main {
 aside {
 	@include setFlex(column, center);
 	height: 90vh;
-	width: 15%;
+	min-width: 15%;
 
 	h1 {
 		color: $active-link;
@@ -84,16 +84,15 @@ section.portfolio {
 	margin-left: 3%;
 	width: 82%;
 	height: 93vh;
+}
 
-	h1.h1-portfolio {
-		font-family: monospace;
-		font-weight: 800;
-		text-transform: uppercase;
-		font-size: 2rem;
-		letter-spacing: 1px;
-		color: $active-link;
-		margin-bottom: 0.7em;
-	}
+h1.h1-portfolio {
+	font-family: monospace;
+	font-weight: 800;
+	text-transform: uppercase;
+	font-size: 2rem;
+	color: $active-link;
+	margin-bottom: 0.7em;
 }
 
 article.balance-usdt {
@@ -182,16 +181,60 @@ article.balances {
 // BEGINING OF TRADEPAIR
 // BEGINING OF TRADEPAIR
 // BEGINING OF TRADEPAIR
+.tradepair-section {
+	margin-left: 3%;
+	margin-top: 7vh;
+}
 
 .TradePair {
-	height: 100vh;
 	@include setFlex(row, flex-start);
-	flex-wrap: wrap;
+	flex-wrap: nowrap;
+	height: 100vh;
 
 	.chart {
-		justify-self: flex-start;
-		flex-basis: 80%;
-		max-height: 500px;
-		height: 500px;
+		width: 1000px;
+		height: 400px;
+		border: none;
+		box-shadow: 2px 105px 10px 2px #3f96bed8;
+	}
+
+	.order {
+		@include setFlex(column, flex-start);
+		background-color: $background;
+		color: $text;
+		width: 25%;
+		height: 400px;
+		margin: 5%;		
+		box-shadow: 1px 5px 10px 2px #3f96bed8;
+		background-color: $background;
+
+		ul {
+			@include setFlex(row, flex-start);
+			list-style: none;
+
+			li {
+				margin: 5px;
+			}
+		}
+
+		.order-form {
+			@include setFlex(column, flex-start);
+
+			button {
+				width: 7em;
+				height: 35px;
+				margin-top: 10px;
+				color: white;
+				font-size: 20px;
+				border: none;
+				align-self: center;
+			}
+			.btn-buy {
+				background-color: #11e43479;
+			}
+			.btn-sell {
+				background-color: #ef5350a4;
+			}
+		}
 	}
 }

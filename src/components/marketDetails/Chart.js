@@ -14,7 +14,7 @@ const Chart = props => {
       script.onload = () => {
         if (typeof TradingView != 'undefined') {
           new window.TradingView.widget({
-            "width": "100%",
+            "width": "1000px",
             "symbol": "BINANCE:BTCUSDT",
             "interval": "1h",
             "range": "1M",

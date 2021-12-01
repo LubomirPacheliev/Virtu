@@ -46,7 +46,7 @@ main {
 	.custom-shape-divider-bottom-1638357497 svg {
 		position: relative;
 		display: block;
-		width: calc(165% + 3.3px);
+		width: calc(185% + 3.3px);
 		height: 812px;
 	}
 	
@@ -120,12 +120,7 @@ article.balances {
 		min-height: 2em;
 		margin-right: 1.8%;
 		border: none;
-		box-shadow: 1px 5px 10px 2px rgba(0, 0, 0, 0.164);
-		transition: height 500ms ease-in;
-
-		&:hover {
-			height: 10em;
-		}
+		box-shadow: 1px 5px 10px 2px #3f96bed8;
 
 		h5 {
 			font-size: 1.5em;

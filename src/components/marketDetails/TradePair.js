@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import Order from "./Order.jsx";
-import OrderHistory from "./OrderHistory.jsx";
-import TA from "./TA.jsx";
-import Chart from "./Chart.jsx";
+import Order from "./Order.js";
+import OrderHistory from "./OrderHistory.js";
+import TA from "./TA.js";
+import Chart from "./Chart.js";
 import { useParams } from 'react-router-dom';
 import { portfolioContext } from '../../utils/portfolioContext';
 

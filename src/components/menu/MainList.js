@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import Ticker from './Ticker.jsx';
+import Ticker from './Ticker.js';
 
 const MainList = props => { // I want to kill myself because of how bad this component is
     const {tickers} = props;

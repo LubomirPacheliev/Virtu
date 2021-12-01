@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import ChangeList from './Changelist.jsx';
-import MainList from './MainList.jsx';
+import ChangeList from './Changelist.js';
+import MainList from './MainList.js';
 
 const MarketList = props => {
     const [tickers, setTickers] = useState([]);

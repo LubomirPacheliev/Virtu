@@ -2,3 +2,64 @@
 	margin: 0px;
 	padding: 0px;
 }
+
+$header: #e5e5e9;
+$background: #FFFFFF;
+$text: #010001;
+$grayed-text: #a8b5c0;
+$active-link: #04851F;
+
+@mixin setFlex($direction, $align) {
+	display: flex;
+	flex-direction: $direction;
+	align-items: $align;
+}
+
+@mixin fillParent() {
+	height: 100%;
+	width: 100%;
+}
+
+body {
+	overflow-y: hidden;
+}
+
+header {
+	background-color: $header;
+	color: $text;
+	width: 100vw;
+	min-height: 100px;
+	height: auto;
+	@include setFlex(row, center);
+
+	h1 {
+		margin: 0em 1.9em;
+		font-size: 3rem;
+	}
+
+	h2 {
+		margin-left: auto;
+		margin-right: 5em;
+		font-size: 2rem;
+	}
+}
+
+aside {
+	@include setFlex(column, center);
+	height: 90vh;
+	width: 15%;
+
+	ul {
+		list-style-type: none;
+		margin-top: 10%;
+
+		li a {
+			display: block;
+			color: $grayed-text;
+			font-weight: 500;
+			font-size: 1.3em;
+			text-decoration: none;
+			margin-top: 10px;
+		}
+	}
+}

@@ -24,6 +24,11 @@ body {
 	overflow-y: hidden;
 }
 
+main {
+	@include setFlex(row, flex-start);
+	margin-top: 2%;
+}
+
 header {
 	background-color: $header;
 	color: $text;
@@ -51,7 +56,6 @@ aside {
 
 	ul {
 		list-style-type: none;
-		margin-top: 10%;
 
 		li a {
 			display: block;
@@ -62,4 +66,46 @@ aside {
 			margin-top: 10px;
 		}
 	}
+}
+
+section.portfolio {
+	margin-left: 2%;
+	width: 83%;
+	height: auto;
+}
+
+article.balances {
+	@include setFlex(row, flex-start);
+	margin-top: 15px;
+
+	.card {
+		width: 17%;
+		height: auto;
+		min-height: 2em;
+		margin-right: 1.8%;
+		border: none;
+		box-shadow: 0px 5px 3px 4px rgba(0, 0, 0, 0.349);
+
+		h5 {
+			font-size: 1.5em;
+			padding-bottom: 5px;
+			img {
+				height: 30px;
+				width: 30px;
+			}
+		}
+
+		h6 {
+			font-size: 1.2em;
+		}
+
+		p {
+			font-size: 1em;
+		}
+	}
+}
+
+td img {
+	height: 20px;
+	width: 20px;
 }

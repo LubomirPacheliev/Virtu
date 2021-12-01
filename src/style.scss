@@ -213,6 +213,7 @@ article.balances {
 		ul {
 			@include setFlex(row, flex-start);
 			position: relative;
+			top: 5px;
 			right: 3%;
 			list-style: none;
 
@@ -265,8 +266,33 @@ article.balances {
 		}
 	}
 
-	article.order-history {
-		color: $contrast-text;
+	.order-history {
+		color: $text;
+		position: relative;
+		bottom: 5.2em;
+		width: 76vw;
+		height: 19vh;
+		max-height: 19vh;
 
+		.order-history-list {
+			@include fillParent();
+			@include setFlex(column, flex-start);
+			flex-wrap: wrap;
+			padding: 10px 0px;
+			p {
+				line-height: 5px;
+				color: white;
+			}
+		}
+	}
+
+	.order-history-h1 {
+		font-size: 2em;
+		font-weight: 600;
+		font-family: monospace;
+		letter-spacing: -1px;
+		position: relative;
+		bottom: 80px;
+		color: $active-link;
 	}
 }

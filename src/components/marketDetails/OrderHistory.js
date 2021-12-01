@@ -3,7 +3,6 @@ import { portfolioContext } from '../../utils/portfolioContext';
 
 const OrderHistory = () => {
     const { history } = useContext(portfolioContext);
-    console.log(history);
 
     const returnOrderListing = order => {
         const {orderType, firstSymbol, secondSymbol, atPrice, atAmount, atCost} = order;
@@ -12,14 +11,14 @@ const OrderHistory = () => {
     }
 
     return ( 
-        <article className="order-history">
-            <div className="order-history-head">
-                <h1>your order history</h1>
-            </div>
+        <div>
+            <h1 className="order-history-h1">history</h1>
+            <article className="order-history">
             <div className="order-history-list">
-                {history.map((order, i) => returnOrderListing(order))}
+                {history.reverse().map((order, i) => returnOrderListing(order))}
             </div>
         </article>
+        </div>
     );
 }
  

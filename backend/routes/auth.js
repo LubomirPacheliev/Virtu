@@ -20,7 +20,7 @@ router.post('/auth/register', async (req, res) => {
     const capital = req.body.capital;
     const token = await jwt.sign({email, pass}, process.env.JWT_SECRET);
     await auth.createUser(user);
-    await firestore.doc(user.email).create(capital);
+    // await firestore.doc(user.email).create(capital);
     res.cookie('auth', token);
 });
 

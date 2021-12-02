@@ -19,7 +19,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "dev": "nodemon ./backend/server.js"
   },
   "eslintConfig": {
     "extends": [
@@ -42,7 +42,6 @@
   "devDependencies": {
     "nodemon": "^2.0.15"
   },
-  "main": "index.jsx",
   "author": "LubomirP <lubomirpacheliev@gmail.com>",
   "license": "MIT"
 }

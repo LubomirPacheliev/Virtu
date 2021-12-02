@@ -30,7 +30,7 @@ const Register = ({asideRef}) => {
                 <input type="text" placeholder="your email" ref={email} />
                 <input type="password" placeholder="your password" ref={pass} />
                 <button className="btn-login" onClick={loginFirebase}>login</button>
-                <Link to="/login">You haven't registered yet?</Link>
+                <Link to="/register">You haven't registered yet?</Link>
             </article>
             <a className="auth-goback" onClick={() => history.push('/profile')}>Go Back</a>
         </section>

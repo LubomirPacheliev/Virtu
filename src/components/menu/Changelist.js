@@ -22,7 +22,7 @@ const TopGainers = ({tickers}) => {
 }
 
 const TopLosers = ({tickers}) => {
-    const losers = tickers.sort((tickerA, tickerB) => Number(tickerA.p) - Number(tickerB.p)).slice(0, 7);
+    const losers = tickers.sort((tickerA, tickerB) => Number(tickerA.P) - Number(tickerB.P)).slice(0, 7);
     return (
         <div>
             <p>top losers</p>

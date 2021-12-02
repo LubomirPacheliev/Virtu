@@ -7,7 +7,6 @@ app.initializeApp({
     credential: app.credential.cert(serviceAccount)
 });
 
-const auth = require('firebase-admin/auth').getAuth();
 const firestore = require('firebase-admin/firestore').getFirestore();
 
 require('dotenv').config();
@@ -19,12 +18,10 @@ router.post('/register', async (req, res) => {
     const capital = [{symbol: 'usdt', value: 1000}];
 
     const token = jwt.sign(user, 'haveyouevertriedashakewithbananasandkiwis');
-    await auth.createUser(user);
-    
     const firestoreBatch = firestore.batch();
     firestoreBatch.create(firestore.doc('assets/' + user.email), { capital });
     await firestoreBatch.commit();
-    res.cookie('auth', token);
+    res.cookie('auth', token).status(200).end();
 });
 
 module.exports = router;

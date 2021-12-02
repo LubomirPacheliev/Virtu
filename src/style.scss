@@ -296,3 +296,62 @@ article.balances {
 		color: $active-link;
 	}
 }
+
+// BEGINING OF MARKETLIST
+// BEGINING OF MARKETLIST
+// BEGINING OF MARKETLIST
+// BEGINING OF MARKETLIST
+
+.market-list-container {
+	margin-top: 7vh;
+	width: 80vw;
+
+	.main-list-component {
+		@include setFlex(column, flex-start);
+		box-shadow: 1px 5px 10px 2px #3f96bed8;
+		background-color: $background;
+		padding: 20px;
+		width: 55%;
+	}
+
+	.market-list {
+		@include setFlex(row, flex-start);
+
+		.volatility-list {
+			@include setFlex(column, flex-start);
+			box-shadow: 1px 5px 10px 2px #3f96bed8;
+			background-color: $background;
+			padding: 20px;
+			margin: 3%;
+			width: 15%;
+
+			p {
+				margin: 5px 0px;
+			}
+
+			#percentage-td {
+				padding: 0px 10px;
+			}
+
+			td {
+				color: $text;
+			}
+		}
+	}
+
+	.tabs {
+		@include setFlex(row, flex-start);
+		p {
+			margin: 5px;
+		}
+	}
+
+	#search {
+		width: 35%;
+		border-radius: 10px;
+		border: 2px black solid;
+		text-indent: 10px;
+		align-self: flex-end;
+		margin-right: 5em;
+	}
+}

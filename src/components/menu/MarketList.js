@@ -6,9 +6,12 @@ const MarketList = props => {
     const [tickers, setTickers] = useState([]);
     useEffect(() => getTickers(setTickers), [ setTickers ]);
     return (
-        <div className="market-list">
-            <MainList tickers={tickers} />
-            <ChangeList tickers={tickers} />
+        <div className="market-list-container">
+            <h1 className="h1-portfolio">markets</h1>
+            <article className="market-list">
+                <MainList tickers={tickers} />
+                <ChangeList tickers={tickers} />
+            </article>
         </div>
     );
 }

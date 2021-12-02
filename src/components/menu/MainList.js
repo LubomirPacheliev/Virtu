@@ -36,25 +36,16 @@ const MainList = props => { // I want to kill myself because of how bad this com
 
     return (
         <div className="main-list-component">
-            <input type="text" name="search" id="search" ref={ref} onChange={e => setSearch(e.target.value)} />;
-            <table>
+            <input type="text" placeholder="search" id="search" ref={ref} onChange={e => setSearch(e.target.value)} />
+            <table className="table table-borderless table-hover">
                 <thead>
                     <tr>
-                        <th>Coin Pair</th>
-                        <th>Price</th>
-                        <th>24H Change</th>
-                        <th>Trades</th>
+                        <th scope="col">Coin Pair</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">24H Change</th>
+                        <th scope="col">Trades</th>
                     </tr>
                 </thead>
-                <tfoot>
-                    <tr>
-                        {
-                            groups
-                            .map((group, i) => <td key={i} onClick={() => setOpenTab(i)}>{i + 1}</td>) // eslint-disable-next-line
-                            .filter(tab => tab.key < openTab + 8 && tab.key > openTab - 1 || tab.key === '0' || tab.key === `${groups.length - 20}`)
-                        }
-                    </tr>
-                </tfoot>
                 <tbody>
                     {typeof groups[openTab] === 'undefined' 
                     || searchVal.length > 0
@@ -62,6 +53,13 @@ const MainList = props => { // I want to kill myself because of how bad this com
                     {searchVal && search(ref).map((ticker, i) => <Ticker key={i} ticker={ticker} isMainList={true} />)}
                 </tbody>
             </table>
+            <div className="tabs">
+                {
+                    groups
+                    .map((group, i) => <p key={i} onClick={() => setOpenTab(i)}>{i + 1}</p>) // eslint-disable-next-line
+                    .filter(tab => tab.key < openTab + 8 && tab.key > openTab - 1 || tab.key === '0' || tab.key === `${groups.length - 20}`)
+                }
+            </div>
         </div>
     );
 }

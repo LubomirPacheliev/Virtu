@@ -13,7 +13,7 @@ const Ticker = props => {
         <tr className="single-ticker" onClick={navigate}>
             <td>{ticker.s}</td>
             {isMainList && <td>{Number(ticker.c).toFixed(2)}</td>}
-            <td>{ticker.P}%</td> 
+            <td id="percentage-td">{ticker.P}%</td> 
             {isMainList && <td>{ticker.n}</td>}
         </tr>
     );

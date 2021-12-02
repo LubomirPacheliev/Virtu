@@ -16,7 +16,7 @@ const Chart = props => {
           new window.TradingView.widget({
             "width": "auto",
             "symbol": "BINANCE:BTCUSDT",
-            "interval": "1h",
+            "interval": "60mcl",
             "range": "1M",
             "timezone": "Etc/UTC",
             "theme": "dark",

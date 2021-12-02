@@ -21,7 +21,8 @@ const Register = ({asideRef}) => {
 
     const registerFirebase = async () => {
         if (pass.current.value !== repass.current.value) return alert('password need to match');
-        return await auth.createUserWithEmailAndPassword(auth.getAuth(app), email.current.value, pass.current.value);
+        await auth.createUserWithEmailAndPassword(auth.getAuth(app), email.current.value, pass.current.value);
+        history.push('/profile');
     }
 
     return (

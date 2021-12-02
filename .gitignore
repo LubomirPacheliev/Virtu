@@ -11,6 +11,7 @@ npm-debug.log
 dist/
 build/
 /backend/.env
+/backend/admin-sdk-service
 /src/utils/readEnv.js
 
 # Compiled source #

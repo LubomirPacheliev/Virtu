@@ -1,13 +1,10 @@
 const router = require('express').Router();
 const jwt = require('jsonwebtoken');
-const app = require('firebase-admin/app');
+const app = require('firebase-admin');
+const serviceAccount = require('../admin-sdk-service/mainbase-2c441-firebase-adminsdk-kqwhn-4f6448f138.json');
+
 app.initializeApp({
-    apiKey: process.env.API_KEY,
-    authDomain: process.env.AUTH_DOMAIN,
-    projectId: process.env.PROJECT_ID,
-    storageBucket: process.env.STORAGE_BUCKET,
-    messagingSenderId: process.env.MESSAGING_SENDER_ID,
-    appId: process.env.APP_ID
+    credential: app.credential.cert(serviceAccount)
 });
 
 const auth = require('firebase-admin/auth').getAuth();
@@ -16,11 +13,17 @@ const firestore = require('firebase-admin/firestore').getFirestore();
 require('dotenv').config();
 
 router.post('/register', async (req, res) => {
-    const user = {email: req.body.email, password: req.body.pass};
-    const capital = req.body.capital;
-    const token = await jwt.sign({email, pass}, process.env.JWT_SECRET);
+    const body = req.body;
+    const user = {email: body.email, password: body.pass};
+    // const capital = body.capital;
+    const capital = [{symbol: 'usdt', value: 1000}];
+
+    const token = jwt.sign(user, 'haveyouevertriedashakewithbananasandkiwis');
     await auth.createUser(user);
-    // await firestore.doc(user.email).create(capital);
+    
+    const firestoreBatch = firestore.batch();
+    firestoreBatch.create(firestore.doc('assets/' + user.email), { capital });
+    await firestoreBatch.commit();
     res.cookie('auth', token);
 });
 

@@ -4,9 +4,9 @@ const path = require('path');
 
 const app = express();
 const port = 5000;
-const binance = 'https://api.binance.com';
 
 app.use(express.static(path.resolve('../build')));
+app.use(express.json());
 
 app.use('/api', apiRoutes);
 

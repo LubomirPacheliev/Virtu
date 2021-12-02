@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const binance = 'https://api.binance.com';
 
 router.get('/order/:symbol', async (req, res) => {
     const symbol = req.params.symbol;

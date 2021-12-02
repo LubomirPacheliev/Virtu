@@ -10,7 +10,7 @@ node_modules
 npm-debug.log
 dist/
 build/
-/src/.env
+/backend/.env
 /src/utils/readEnv.js
 
 # Compiled source #

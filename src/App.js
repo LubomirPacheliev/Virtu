@@ -7,9 +7,11 @@ import Profile from './components/profile/Profile.js';
 import Login from './components/auth/Login.js';
 import Register from './components/auth/Register.js';
 import './style.scss';
+import { useCookies } from 'react-cookie';
 
 const App = () => {
   const ref = useRef();
+  const [cookies, setCookies, removeCookie] = useCookies();
 
   return (
     <Router>
@@ -20,7 +22,8 @@ const App = () => {
             <li><Link to="/home">Markets</Link></li>
             <li><Link to="/market/SOLUSDT">Market</Link></li>
             <li><Link to="/profile">My Portfolio</Link></li>
-            <li><Link to="/login">Login</Link></li>
+            {!cookies.auth && <li><Link to="/login">Login</Link></li>}
+            {cookies.auth && <li><Link to="/profile" onClick={() => removeCookie('auth')}>Logout</Link></li>}
           </ul>
         </aside>
         <Switch>

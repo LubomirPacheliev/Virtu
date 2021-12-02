@@ -5,6 +5,7 @@ import TradePair from "./components/marketDetails/TradePair.js";
 import MarketList from './components/menu/MarketList.js';
 import Profile from './components/profile/Profile.js';
 import Login from './components/auth/Login.js';
+import Register from './components/auth/Register.js';
 import './style.scss';
 
 const App = () => {
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="/home" component={ MarketList } />
           <Route path="/profile" component={ Profile } />
           <Route path="/login" component={ () => <Login asideRef={ref} /> } />
+          <Route path="/register" component={ () => <Register asideRef={ref} /> } />
           <Route exact path="/" component={ Profile } />
          </Switch>
         <div class="custom-shape-divider-bottom-1638357497">

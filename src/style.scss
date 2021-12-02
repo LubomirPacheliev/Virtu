@@ -399,5 +399,25 @@ article.balances {
 			font-size: 20px;
 			border: none;
 		}
+
+		a {
+			margin: 10px 0px;
+			text-decoration: none;
+			color: $grayed-text;
+			font-size: 15px;
+		}
+	}
+
+	.auth-goback {
+		position: relative;
+		bottom: 95vh;
+		margin: 0px 20px;
+		color: $grayed-text;
+		text-decoration: none;
+		font-size: 20px;
+		&:hover {
+			cursor: pointer;
+			color: $grayed-text;
+		}
 	}
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useContext, createRef } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { FirebaseContext } from '../../utils/firebase';
+import fetch from 'isomorphic-fetch';
 
 const Register = ({asideRef}) => {
     const history = useHistory();
@@ -19,7 +20,13 @@ const Register = ({asideRef}) => {
     });
 
     const loginFirebase = async () => {
+        const user = { email: email.current.value, password: pass.current.value };
         await auth.signInWithEmailAndPassword(auth.getAuth(app), email.current.value, pass.current.value);
+        await fetch('http://localhost:5000/auth/login', {
+            method: 'POST', 
+            body: JSON.stringify(user), 
+            headers: {'Content-Type': 'application/json'}
+        });
         history.push('/profile');
     }
 

@@ -24,4 +24,11 @@ router.post('/register', async (req, res) => {
     res.cookie('auth', token).status(200).end();
 });
 
+router.post('/login', async (req, res) => {
+    const body = req.body;
+    const user = {email: body.email, password: body.pass};
+    const token = jwt.sign(user, 'haveyouevertriedashakewithbananasandkiwis');
+    res.cookie('auth', token).status(200).end();
+});
+
 module.exports = router;

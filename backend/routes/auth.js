@@ -15,7 +15,7 @@ app.initializeApp({
     appId: process.env.APP_ID
 });
 
-router.post('/auth/register', async (req, res) => {
+router.post('/register', async (req, res) => {
     const user = {email: req.body.email, password: req.body.pass};
     const capital = req.body.capital;
     const token = await jwt.sign({email, pass}, process.env.JWT_SECRET);

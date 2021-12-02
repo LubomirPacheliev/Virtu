@@ -355,3 +355,49 @@ article.balances {
 		margin-right: 5em;
 	}
 }
+
+// START OF AUTH PAGES
+// START OF AUTH PAGES
+// START OF AUTH PAGES
+// START OF AUTH PAGES
+
+.auth {
+	margin-top: -3%;
+	height: 100vh;
+	width: 100vw;
+	background-image: url('./low-poly-grid-haikei.svg');
+	background-size: cover;
+	background-repeat: repeat;
+	z-index: 100;
+
+	.auth-form {
+		@include setFlex(column, center);
+		justify-content: center;
+		height: 100vh;
+		width: 20vw;
+		background-color: $background;
+		color: $background;
+
+		input {
+			max-width: 430px;
+			width: 18vw;
+			height: 3em;
+			background-color: $background;
+			border: solid 2px black;
+			border-radius: 5px;
+			margin: 10px 0px;
+			text-indent: 10px;
+			font-size: 15px;
+		}
+
+		button {
+			width: 7em;
+			height: 35px;
+			margin-top: 5px;
+			color: white;
+			background-color: $active-link;
+			font-size: 20px;
+			border: none;
+		}
+	}
+}

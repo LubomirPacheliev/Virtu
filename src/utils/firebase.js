@@ -12,7 +12,7 @@ export default ({ children }) => {
     const app = initializeApp(config);
     auth.initializeAuth(app);
     return (
-      <FirebaseContext.Provider value={ { app, auth, firestore } }>
+      <FirebaseContext.Provider value={ { app, auth, firestore, email: '' } }>
         <CookiesProvider>
           { children }
         </CookiesProvider>

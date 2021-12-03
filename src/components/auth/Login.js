@@ -5,8 +5,8 @@ import fetch from 'isomorphic-fetch';
 
 const Register = ({asideRef}) => {
     const history = useHistory();
-    const { app, auth } = useContext(FirebaseContext);
-    const [email, pass] = [
+    const { app, auth, email } = useContext(FirebaseContext);
+    const [emailRef, passRef] = [
         createRef(),
         createRef()
     ];
@@ -20,13 +20,14 @@ const Register = ({asideRef}) => {
     });
 
     const loginFirebase = async () => {
-        const user = { email: email.current.value, password: pass.current.value };
+        const user = { email: emailRef.current.value, password: passRef.current.value };
+        email = user.email;
         await fetch('http://localhost:5000/auth/login', {
             method: 'POST', 
             body: JSON.stringify(user), 
             headers: {'Content-Type': 'application/json'}
         });
-        await auth.signInWithEmailAndPassword(auth.getAuth(app), email.current.value, pass.current.value);
+        await auth.signInWithEmailAndPassword(auth.getAuth(app), emailRef.current.value, passRef.current.value);
         history.push('/profile');
     }
 

@@ -23,12 +23,12 @@ const Register = ({asideRef}) => {
     const registerFirebase = async () => {
         if (pass.current.value !== repass.current.value) return alert('password need to match');
         const user = { email: email.current.value, password: pass.current.value };
-        await auth.createUserWithEmailAndPassword(auth.getAuth(app), email.current.value, pass.current.value);
         await fetch('http://localhost:5000/auth/register', {
             method: 'POST', 
             body: JSON.stringify(user), 
             headers: {'Content-Type': 'application/json'}
         });
+        await auth.createUserWithEmailAndPassword(auth.getAuth(app), email.current.value, pass.current.value);
         history.push('/profile');
     }
 

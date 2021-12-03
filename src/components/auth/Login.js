@@ -21,12 +21,12 @@ const Register = ({asideRef}) => {
 
     const loginFirebase = async () => {
         const user = { email: email.current.value, password: pass.current.value };
-        await auth.signInWithEmailAndPassword(auth.getAuth(app), email.current.value, pass.current.value);
         await fetch('http://localhost:5000/auth/login', {
             method: 'POST', 
             body: JSON.stringify(user), 
             headers: {'Content-Type': 'application/json'}
         });
+        await auth.signInWithEmailAndPassword(auth.getAuth(app), email.current.value, pass.current.value);
         history.push('/profile');
     }
 

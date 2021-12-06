@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { portfolioContext } from '../../utils/portfolioContext';
 
-const BuyForm = () => {
+const BuyForm = ({orderProps}) => {
     const {
         orderType,
         firstSymbol, secondSymbol,
@@ -10,6 +10,7 @@ const BuyForm = () => {
         atCost, setAtCost,
         history, setHistory
     } = useContext(portfolioContext);
+    const { symbol, email } = orderProps;
 
     const onCostInput = e => {
         const cost = Number(e.target.value);
@@ -17,8 +18,13 @@ const BuyForm = () => {
         setAtAmount(cost * atPrice);
     }
 
-    const onBuyClick = e => {
+    const onSellClick = e => {
         e.preventDefault();
+        fetch('http://localhost:5000/api/order/' + symbol, {
+            method: 'POST',
+            body: JSON.stringify({orderType, asset: firstSymbol, amount: atAmount, usdtCapitalMoved: atCost, email}),
+            headers: {'Content-Type': 'application/json'}
+        });
         setHistory(lastHistory => lastHistory.concat([{orderType, firstSymbol, secondSymbol, atPrice, atAmount, atCost}]));
     }
 
@@ -33,7 +39,7 @@ const BuyForm = () => {
             <input type="text" name="receive" value={atAmount} />
             <label htmlFor="cost">Cost in {firstSymbol}</label>
             <input type="text" name="cost" defaultValue={atCost} onChange={onCostInput} />
-            <button className="btn-sell" onClick={onBuyClick}>Sell</button>
+            <button className="btn-sell" onClick={onSellClick}>Sell</button>
         </div>
     );
 }

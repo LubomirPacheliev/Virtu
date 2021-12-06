@@ -25,7 +25,7 @@ const BuyForm = ({ orderProps }) => {
             body: JSON.stringify({orderType, asset: firstSymbol, amount: atAmount, usdtCapitalMoved: atCost, email}),
             headers: {'Content-Type': 'application/json'}
         });
-        // setHistory(lastHistory => lastHistory.concat([{orderType, firstSymbol, secondSymbol, atPrice, atAmount, atCost}]));
+        setHistory(lastHistory => lastHistory.concat([{orderType, firstSymbol, secondSymbol, atPrice, atAmount, atCost}]));
     }
 
     useEffect(() => setAtAmount(atCost / atPrice), []);

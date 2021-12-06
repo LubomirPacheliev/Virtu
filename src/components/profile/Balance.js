@@ -11,7 +11,6 @@ const Balance = () => {
     useEffect(async () => {
         const docRef = await firestore.getDoc(firestore.doc(firestoreInstance, 'assets/' + email));
         const docVal = await docRef.data();
-        console.log(docVal);
         setBalance(docVal.capital);
     }, []);
 

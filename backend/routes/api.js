@@ -25,28 +25,28 @@ router.post('/order/:symbol', async (req, res) => {
     const { orderType, asset, amount, usdtCapitalMoved, email } = req.body;
     const currAssetRef = firestore.collection('assets/').doc(email + '/').collection('assets/').doc(asset);
     const currUSDTRef = firestore.collection('assets/').doc(email);
-    const currAssetVal = (await currAssetRef.get()).data().amount;
-    const currUSDTVal = (await currUSDTRef.get()).data().capital;
+    const currAssetVal = (await currAssetRef.get()).data();
+    const currUSDTVal = (await currUSDTRef.get()).data();
     const batch = firestore.batch();
     switch(orderType) {
         case 'buy' :
-            if(currUSDTVal < usdtCapitalMoved) res.status(418).end();
-            if (!currAssetVal) {
+            if(currUSDTVal.capital < usdtCapitalMoved) res.status(418).end();
+            if (typeof currAssetVal === 'undefined') {
                 batch.set(currAssetRef, { amount });
-                batch.set(currUSDTRef, { capital: currUSDTVal - usdtCapitalMoved});
+                batch.set(currUSDTRef, { capital: currUSDTVal.capital - usdtCapitalMoved});
                 await batch.commit();
                 res.status(200).end();
             } else {
-                batch.set(currAssetRef, { amount: currAssetVal + amount });
-                batch.set(currUSDTRef, { capital: currUSDTVal - usdtCapitalMoved});
+                batch.set(currAssetRef, { amount: currAssetVal.amount + amount });
+                batch.set(currUSDTRef, { capital: currUSDTVal.capital - usdtCapitalMoved});
                 await batch.commit();
                 res.status(200).end();
             }
             break;
         case 'sell':
-            if(currAssetVal < amount) res.status(418).end();
-            batch.set(currAssetRef, { amount: currAssetVal - usdtCapitalMoved}); // very bad naming, usdtCapital is actually amount here, but rn I'm lazy
-            batch.set(currUSDTRef, { capital: currUSDTVal + amount});
+            if(currAssetVal.amount < amount) res.status(418).end();
+            batch.set(currAssetRef, { amount: currAssetVal.amount - usdtCapitalMoved}); // very bad naming, usdtCapital is actually amount here, but rn I'm lazy
+            batch.set(currUSDTRef, { capital: currUSDTVal.capital + amount});
             await batch.commit();
             res.status(200).end();
             break;

@@ -8,7 +8,7 @@ router.post('/register', async (req, res) => {
     const body = req.body;
     const user = {email: body.email, password: body.pass};
     // const capital = body.capital;
-    const capital = [{symbol: 'usdt', value: 1000}];
+    const capital = 1000;
 
     const token = jwt.sign(user, 'haveyouevertriedashakewithbananasandkiwis');
     const firestoreBatch = firestore.batch();

@@ -17,7 +17,7 @@ const Profile = () => {
 
     return (
         <section className="portfolio">
-            {/* Start of USDT balance */}
+            {/* Start of USDT balance */} 
             <h1 className="h1-portfolio">portfolio</h1>
             <article className="balance-usdt">
                 <h3 className="one-em">your balance <br></br><h1>{balance} USDT</h1></h3>

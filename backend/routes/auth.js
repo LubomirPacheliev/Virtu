@@ -1,12 +1,5 @@
 const router = require('express').Router();
 const jwt = require('jsonwebtoken');
-const app = require('firebase-admin');
-const serviceAccount = require('../admin-sdk-service/mainbase-2c441-firebase-adminsdk-kqwhn-4f6448f138.json');
-
-app.initializeApp({
-    credential: app.credential.cert(serviceAccount)
-});
-
 const firestore = require('firebase-admin/firestore').getFirestore();
 
 require('dotenv').config();

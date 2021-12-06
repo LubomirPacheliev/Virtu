@@ -9,8 +9,8 @@ const port = 5000;
 app.use(express.static(path.resolve('./build')));
 app.use(express.json());
 
-app.use('/api', apiRoutes);
 app.use('/auth', authRoutes);
+app.use('/api', apiRoutes);
 
 app.get('*', (req, res) => {
     res.sendFile(path.resolve('../build/index.html'));

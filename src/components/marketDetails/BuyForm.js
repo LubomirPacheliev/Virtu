@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { portfolioContext } from '../../utils/portfolioContext';
 
-const BuyForm = () => {
+const BuyForm = ({ firestore, firestoreInstance, email }) => {
     const {
         orderType,
         firstSymbol, secondSymbol,
@@ -17,9 +17,14 @@ const BuyForm = () => {
         setAtAmount(cost / atPrice);
     }
 
-    const onBuyClick = e => {
+    const onBuyClick = async e => {
         e.preventDefault();
-        setHistory(lastHistory => lastHistory.concat([{orderType, firstSymbol, secondSymbol, atPrice, atAmount, atCost}]));
+        fetch('http://localhost:5000/api/test', {
+            method: 'POST',
+            body: JSON.stringify({a: 'aa'}),
+            headers: {'Content-Type': 'application/json'}
+        });
+        // setHistory(lastHistory => lastHistory.concat([{orderType, firstSymbol, secondSymbol, atPrice, atAmount, atCost}]));
     }
 
     useEffect(() => setAtAmount(atCost / atPrice), []);

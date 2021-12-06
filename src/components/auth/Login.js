@@ -2,10 +2,12 @@ import React, { useEffect, useContext, createRef } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { FirebaseContext } from '../../utils/firebase';
 import fetch from 'isomorphic-fetch';
+import { useCookies } from 'react-cookie';
 
 const Register = ({asideRef}) => {
     const history = useHistory();
-    const { app, auth, setEmail } = useContext(FirebaseContext);
+    const { app, auth } = useContext(FirebaseContext);
+    const [cookies, setCookies] = useCookies();
     const [emailRef, passRef] = [
         createRef(),
         createRef()
@@ -27,7 +29,7 @@ const Register = ({asideRef}) => {
             headers: {'Content-Type': 'application/json'}
         });
         await auth.signInWithEmailAndPassword(auth.getAuth(app), emailRef.current.value, passRef.current.value);
-        await setEmail(user.email);
+        setCookies('email', user.email);
         history.push('/profile');
     }
 

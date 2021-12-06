@@ -14,7 +14,7 @@ export default ({ children }) => {
     auth.initializeAuth(app);
     const firestoreInstance = firestore.getFirestore(app);
     return (
-      <FirebaseContext.Provider value={ { app, auth, firestoreInstance: firestoreInstance, firestore, setEmail} }>
+      <FirebaseContext.Provider value={ { app, auth, firestoreInstance: firestoreInstance, firestore, email, setEmail} }>
         <CookiesProvider>
           { children }
         </CookiesProvider>

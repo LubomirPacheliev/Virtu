@@ -22,35 +22,30 @@ router.get('/order/:symbol', async (req, res) => {
 });
 
 router.post('/order/:symbol', async (req, res) => {
-    const { orderType, asset, amount, usdtCapital: usdtCapitalMoved, email } = req.body;
-    const docRef = firestore.collection('assets').doc(email);
-    const capitalField = docRef.capital;
-    const currUSDTCapital = Number(capitalField[0].value);
-    const currAssetCapital = Number(capitalField.filter(currAsset => currAsset.symbol === asset)[0]);
+    const { orderType, asset, amount, usdtCapitalMoved, email } = req.body;
+    const currAssetRef = firestore.collection('assets').doc(email).collection('assets').doc(asset);
+    const currUSDTRef = firestore.collection('assets').doc(email);
+    const batch = firestore.batch();
+    switch(orderType) {
+        case 'buy' :
+            if(currUSDTRef['capital'] < usdtCapitalMoved) res.status(418).end();
+            if (!currAssetRef.value) {
+                batch.set(currAssetRef, amount);
+                batch.set(currUSDTRef, currUSDTRef['capital'] - usdtCapitalMoved);
+                await batch.commit();
+                res.status(200).end();
+            } else {
+                batch.set(currAssetRef, currAssetRef['amount'] + amount);
+                batch.set(currUSDTRef, currUSDTRef['capital'] - usdtCapitalMoved);
+                await batch.commit();
+                res.status(200).end();
+            }
+            break;
+        case 'sell':
 
-    const writeBatch = firestore.batch();
-
-    if ( orderType === 'buy' ) {
-        if ( currUSDTCapital < usdtCapitalMoved ) res.status(418).end();
-        const newUSDTCapital = currUSDTCapital - usdtCapitalMoved;
-        const newAssetCapital = currAssetCapital + Number(amount);
-
-        // const newCapitalField = capitalField;
-        // newCapitalField
-
-        // writeBatch.set(docRef, );
-    } else {
-
+            break;
     }
 }); 
-
-router.post('/test', async (req, res) => {
-    const writeBatch = firestore.batch();
-    const docRef = firestore.collection('assets').doc('test').collection('testA').doc('testB');
-    writeBatch.create(docRef, {test: 'testing'});
-    await writeBatch.commit();
-    res.end();
-});
 
 router.get('/markets', async (req, res) => {
     const url = `${binance}/api/v3/ticker/24hr`;

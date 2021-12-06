@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import BuyForm from './BuyForm';
 import SellForm from './SellForm';
 import { portfolioContext } from '../../utils/portfolioContext';
+import { FirebaseContext } from '../../utils/firebase';
 
 const OrderForm = props => {
     const orderType = props.orderType;
@@ -10,6 +11,7 @@ const OrderForm = props => {
     const [atAmount, setAtAmount] = useState(1000);
     const [atCost, setAtCost] = useState(1000);
     const {history, setHistory} = useContext(portfolioContext);
+    const { firestore, firestoreInstance, email } = useContext(FirebaseContext);
 
     const { symbol } = useParams();
     const firstSymbol = symbol.slice(2).toLowerCase() === 'usdt' ? symbol.slice(0, 2) : symbol.slice(0, 3);
@@ -20,7 +22,9 @@ const OrderForm = props => {
         atPrice, setAtPrice,
         atAmount, setAtAmount,
         atCost, setAtCost,
-        history, setHistory
+        history, setHistory,
+        firestore, firestoreInstance,
+        email, symbol
     };
 
     let i = 0;
@@ -37,8 +41,8 @@ const OrderForm = props => {
     return (
         <div className="order-form">
             <portfolioContext.Provider value={orderProps}>
-                {orderType === 'buy' && <BuyForm />}
-                {orderType === 'sell' && <SellForm />}
+                {orderType === 'buy' && <BuyForm orderProps={orderProps} />}
+                {orderType === 'sell' && <SellForm orderProps={orderProps} />}
             </portfolioContext.Provider>
         </div>
     );

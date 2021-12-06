@@ -1,4 +1,4 @@
-import React, { createContext } from 'react';
+import React, { createContext, useState } from 'react';
 import { initializeApp } from 'firebase/app';
 import * as auth from 'firebase/auth';
 import * as firestore from 'firebase/firestore';
@@ -9,10 +9,12 @@ const FirebaseContext = createContext(null);
 export { FirebaseContext };
 
 export default ({ children }) => {
+    const [email, setEmail] = useState('');
     const app = initializeApp(config);
     auth.initializeAuth(app);
+    const firestoreInstance = firestore.getFirestore(app);
     return (
-      <FirebaseContext.Provider value={ { app, auth, firestore, email: '' } }>
+      <FirebaseContext.Provider value={ { app, auth, firestoreInstance: firestoreInstance, firestore, setEmail} }>
         <CookiesProvider>
           { children }
         </CookiesProvider>

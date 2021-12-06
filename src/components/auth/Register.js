@@ -5,7 +5,7 @@ import { FirebaseContext } from '../../utils/firebase';
 
 const Register = ({asideRef}) => {
     const history = useHistory();
-    const { app, auth, email } = useContext(FirebaseContext);
+    const { app, auth, setEmail } = useContext(FirebaseContext);
     const [emailRef, passRef, repassRef] = [
         createRef(),
         createRef(),
@@ -23,13 +23,13 @@ const Register = ({asideRef}) => {
     const registerFirebase = async () => {
         if (passRef.current.value !== repassRef.current.value) return alert('password need to match');
         const user = { email: emailRef.current.value, password: passRef.current.value };
-        email = user.email;
         await fetch('http://localhost:5000/auth/register', {
             method: 'POST', 
             body: JSON.stringify(user), 
             headers: {'Content-Type': 'application/json'}
         });
         await auth.createUserWithEmailAndPassword(auth.getAuth(app), emailRef.current.value, passRef.current.value);
+        await setEmail(user.email);
         history.push('/profile');
     }
 
@@ -37,7 +37,7 @@ const Register = ({asideRef}) => {
         <section className="auth">
             <article className="auth-bg"></article>
             <article className="auth-form">
-                <input type="text" placeholder="your email" ref={email} />
+                <input type="text" placeholder="your email" ref={emailRef} />
                 <input type="password" placeholder="your password" ref={passRef} />
                 <input type="password" placeholder="confirm your password" ref={repassRef} />
                 <button className="btn-login" onClick={registerFirebase}>register</button>

@@ -5,7 +5,7 @@ import fetch from 'isomorphic-fetch';
 
 const Register = ({asideRef}) => {
     const history = useHistory();
-    const { app, auth, email } = useContext(FirebaseContext);
+    const { app, auth, setEmail } = useContext(FirebaseContext);
     const [emailRef, passRef] = [
         createRef(),
         createRef()
@@ -21,13 +21,13 @@ const Register = ({asideRef}) => {
 
     const loginFirebase = async () => {
         const user = { email: emailRef.current.value, password: passRef.current.value };
-        email = user.email;
         await fetch('http://localhost:5000/auth/login', {
             method: 'POST', 
             body: JSON.stringify(user), 
             headers: {'Content-Type': 'application/json'}
         });
         await auth.signInWithEmailAndPassword(auth.getAuth(app), emailRef.current.value, passRef.current.value);
+        await setEmail(user.email);
         history.push('/profile');
     }
 
@@ -35,8 +35,8 @@ const Register = ({asideRef}) => {
         <section className="auth">
             <article className="auth-bg"></article>
             <article className="auth-form">
-                <input type="text" placeholder="your email" ref={email} />
-                <input type="password" placeholder="your password" ref={pass} />
+                <input type="text" placeholder="your email" ref={emailRef} />
+                <input type="password" placeholder="your password" ref={passRef} />
                 <button className="btn-login" onClick={loginFirebase}>login</button>
                 <Link to="/register">You haven't registered yet?</Link>
             </article>

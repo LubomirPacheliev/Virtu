@@ -44,7 +44,11 @@ router.post('/order/:symbol', async (req, res) => {
             }
             break;
         case 'sell':
-
+            if(currAssetVal < amount) res.status(418).end();
+            batch.set(currAssetRef, { amount: currAssetVal - amount});
+            batch.set(currUSDTRef, { capital: currUSDTVal + usdtCapitalMoved});
+            await batch.commit();
+            res.status(200).end();
             break;
     }
 }); 

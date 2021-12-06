@@ -23,20 +23,21 @@ router.get('/order/:symbol', async (req, res) => {
 
 router.post('/order/:symbol', async (req, res) => {
     const { orderType, asset, amount, usdtCapitalMoved, email } = req.body;
-    const currAssetRef = firestore.collection('assets').doc(email).collection('assets').doc(asset);
-    const currUSDTRef = firestore.collection('assets').doc(email);
+    console.log(email, asset, typeof amount, typeof usdtCapitalMoved);
+    const currAssetRef = firestore.collection('assets/').doc(email + '/').collection('assets/').doc(asset);
+    const currUSDTRef = firestore.collection('assets/').doc(email);
     const batch = firestore.batch();
     switch(orderType) {
         case 'buy' :
             if(currUSDTRef['capital'] < usdtCapitalMoved) res.status(418).end();
             if (!currAssetRef.value) {
-                batch.set(currAssetRef, amount);
-                batch.set(currUSDTRef, currUSDTRef['capital'] - usdtCapitalMoved);
+                batch.set(currAssetRef, { amount });
+                batch.set(currUSDTRef, { amount: Number(currUSDTRef['capital']) - usdtCapitalMoved});
                 await batch.commit();
                 res.status(200).end();
             } else {
-                batch.set(currAssetRef, currAssetRef['amount'] + amount);
-                batch.set(currUSDTRef, currUSDTRef['capital'] - usdtCapitalMoved);
+                batch.set(currAssetRef, { amount: Number(currUSDTRef['amount']) + amount });
+                batch.set(currUSDTRef, { amount: Number(currUSDTRef['capital']) - usdtCapitalMoved});
                 await batch.commit();
                 res.status(200).end();
             }

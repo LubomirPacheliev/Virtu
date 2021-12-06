@@ -28,6 +28,7 @@ router.post('/order/:symbol', async (req, res) => {
     const currAssetVal = (await currAssetRef.get()).data().amount;
     const currUSDTVal = (await currUSDTRef.get()).data().capital;
     const batch = firestore.batch();
+    console.log(orderType) //AAAAAAAAAAAaaaaaaaaaaaaaaaa
     switch(orderType) {
         case 'buy' :
             if(currUSDTVal < usdtCapitalMoved) res.status(418).end();
@@ -45,6 +46,7 @@ router.post('/order/:symbol', async (req, res) => {
             break;
         case 'sell':
             if(currAssetVal < amount) res.status(418).end();
+            console.log('we get the order') //AAAAAAAAAAAaaaaaaaaaaaaaaaaaaaaaaaa
             batch.set(currAssetRef, { amount: currAssetVal - amount});
             batch.set(currUSDTRef, { capital: currUSDTVal + usdtCapitalMoved});
             await batch.commit();

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { portfolioContext } from '../../utils/portfolioContext';
 
-const BuyForm = ({orderProps}) => {
+const SellForm = ({orderProps}) => {
     const {
         orderType,
         firstSymbol, secondSymbol,
@@ -18,14 +18,14 @@ const BuyForm = ({orderProps}) => {
         setAtAmount(cost * atPrice);
     }
 
-    const onSellClick = e => {
+    const onSellClick = async e => {
         e.preventDefault();
-        fetch('http://localhost:5000/api/order/' + symbol, {
+        await fetch('http://localhost:5000/api/order/' + symbol, {
             method: 'POST',
             body: JSON.stringify({orderType, asset: firstSymbol, amount: atAmount, usdtCapitalMoved: atCost, email}),
             headers: {'Content-Type': 'application/json'}
         });
-        setHistory(lastHistory => lastHistory.concat([{orderType, firstSymbol, secondSymbol, atPrice, atAmount, atCost}]));
+        await setHistory(lastHistory => lastHistory.concat([{orderType, firstSymbol, secondSymbol, atPrice, atAmount, atCost}]));
     }
 
     useEffect(() => setAtAmount(atCost * atPrice), []);
@@ -44,4 +44,4 @@ const BuyForm = ({orderProps}) => {
     );
 }
  
-export default BuyForm;
+export default SellForm;

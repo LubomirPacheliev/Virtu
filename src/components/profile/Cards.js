@@ -19,37 +19,43 @@ const Cards = () => {
     useEffect(async () => {
         const docs = await firestore.getDocs(firestore.collection(firestoreInstance, `assets/${email}/assets`));
         const assetsRef = docs.docs;
-        console.log(assetsRef); //aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaw
-        const assets = assetsRef.map(async asset => {
-            const symbol = asset.id;
-            const assetVal = await asset.data();
-            console.log(assetVal); //aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaw
-            const ticker = await fetch('https://api.binance.com/api/v3/ticker/24hr?symbol=' + symbol.toUpperCase() + 'USDT');
-            const parsedTicker = await ticker.json();
-            const usdtValue = Number(parsedTicker.c) * assetVal.amount;
-            return 
-        });
-        if (assets.length < 5) {
-            for (let i = assets.length; i < 5; i++) {
+        const assets = [];
+        if (assetsRef.length < 5) {
+            for (let i = assetsRef.length; i < 5; i++) {
                 assets.push(defaultCards[i]);
             }
-        } 
-        
+         }
+        assetsRef.map(async (asset, i) => {
+            const symbol = asset.id;
+            const assetVal = await asset.data();
+            const ticker =  await fetch('https://api.binance.com/api/v3/ticker/24hr?symbol=' + symbol.toUpperCase() + 'USDT');
+            const parsedTicker = await ticker.json();
+            const usdtValue = Number(parsedTicker.lastPrice) * assetVal.amount;
+            const returnVal = {
+                img: "https://vectorified.com/image/ethereum-logo-vector-13.png", 
+                coin: symbol, 
+                symbol,
+                amount: Number(assetVal.amount).toFixed(7), 
+                usdtValue: Number(usdtValue).toFixed(7)
+            };
+            assets.unshift(returnVal);
+            if (assets.length === 5) setCards(assets);
+        });
     }, []);
 
     return (
         <div>
             <h3 className="one-em">balances</h3>
             <article className="balances">
-                {defaultCards.map(card => returnCard(card))}
+                {cards.map((card, i) => returnCard(card, i))}
             </article>
         </div>
     );
 }
 
-const returnCard = card => {
+const returnCard = (card, i) => {
     return (
-        <article className="card">
+        <article className="card" key={i}>
             <div className="card-body">
                 <h5 className="card-title"><img src={card.img}/> {card.coin}</h5>
                 <h6 class="card-subtitle mb-2">{card.amount} {card.symbol}</h6>

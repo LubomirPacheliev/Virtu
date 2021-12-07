@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { FirebaseContext } from '../../utils/firebase';
 import { useCookies } from 'react-cookie';
+import fetch from 'isomorphic-fetch';
 
 const Cards = () => {
     const { firestore, firestoreInstance } = useContext(FirebaseContext);
@@ -18,12 +19,15 @@ const Cards = () => {
     useEffect(async () => {
         const docs = await firestore.getDocs(firestore.collection(firestoreInstance, `assets/${email}/assets`));
         const assetsRef = docs.docs;
-        console.log(assetsRef);
+        console.log(assetsRef); //aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaw
         const assets = assetsRef.map(async asset => {
             const symbol = asset.id;
-            
             const assetVal = await asset.data();
-            console.log(assetVal);
+            console.log(assetVal); //aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaw
+            const ticker = await fetch('https://api.binance.com/api/v3/ticker/24hr?symbol=' + symbol.toUpperCase() + 'USDT');
+            const parsedTicker = await ticker.json();
+            const usdtValue = Number(parsedTicker.c) * assetVal.amount;
+            return 
         });
         if (assets.length < 5) {
             for (let i = assets.length; i < 5; i++) {
@@ -37,18 +41,22 @@ const Cards = () => {
         <div>
             <h3 className="one-em">balances</h3>
             <article className="balances">
-                {defaultCards.map(card => 
-                    <article className="card">
-                    <div className="card-body">
-                        <h5 className="card-title"><img src={card.img}/> {card.coin}</h5>
-                        <h6 class="card-subtitle mb-2">{card.amount} {card.symbol}</h6>
-                        <p class="card-text">{card.usdtValue} USDT</p>
-                    </div>
-                    </article>
-                )}
+                {defaultCards.map(card => returnCard(card))}
             </article>
         </div>
     );
+}
+
+const returnCard = card => {
+    return (
+        <article className="card">
+            <div className="card-body">
+                <h5 className="card-title"><img src={card.img}/> {card.coin}</h5>
+                <h6 class="card-subtitle mb-2">{card.amount} {card.symbol}</h6>
+                <p class="card-text">{card.usdtValue} USDT</p>
+            </div>
+        </article>
+    )
 }
  
 export default Cards;

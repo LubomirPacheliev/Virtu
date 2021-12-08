@@ -1,5 +1,6 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { portfolioContext } from '../../utils/portfolioContext';
+import { FirebaseContext } from '../../utils/firebase';
 
 const SellForm = ({orderProps}) => {
     const {
@@ -11,6 +12,8 @@ const SellForm = ({orderProps}) => {
         history, setHistory
     } = useContext(portfolioContext);
     const { symbol, email } = orderProps;
+    const { firestore, firestoreInstance } = useContext(FirebaseContext);
+    const [available, setAvailable] = useState(0);
 
     const onCostInput = e => {
         const cost = Number(e.target.value);
@@ -29,10 +32,14 @@ const SellForm = ({orderProps}) => {
     }
 
     useEffect(() => setAtAmount(atCost * atPrice), []);
+    useEffect(async () => {
+        const docRef = await firestore.getDoc(firestore.doc(firestoreInstance, `assets/${email}/assets/${firstSymbol}`));
+        if (docRef.data().amount) setAvailable(docRef.data().amount.toFixed(2)) 
+    }, []);
 
     return (
         <div>
-            <p>available: 1,000 USDT</p>
+            <p>available: {available} {firstSymbol}</p>
             <label htmlFor="at-price">At {secondSymbol}</label><br />
             <input type="text" name="at-price" value={atPrice} />
             <label htmlFor="receive">Receive {secondSymbol}</label>

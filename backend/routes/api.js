@@ -32,8 +32,8 @@ router.post('/order/:symbol', async (req, res) => {
         case 'buy' :
             if(currUSDTVal.capital < usdtCapitalMoved) res.status(418).end();
             if (typeof currAssetVal === 'undefined') {
-                batch.set(currAssetRef, { amount });
-                batch.set(currUSDTRef, { capital: currUSDTVal.capital - usdtCapitalMoved});
+                batch.set(currAssetRef, { amount, initialUSDT: usdtCapitalMoved });
+                batch.set(currUSDTRef, { capital: currUSDTVal.capital - usdtCapitalMoved });
                 await batch.commit();
                 res.status(200).end();
             } else {

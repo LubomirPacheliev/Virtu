@@ -45,7 +45,7 @@ router.post('/order/:symbol', async (req, res) => {
             break;
         case 'sell':
             if(currAssetVal.amount < amount) res.status(418).end();
-            batch.set(currAssetRef, { amount: currAssetVal.amount - usdtCapitalMoved}); // very bad naming, usdtCapital is actually amount here, but rn I'm lazy
+            batch.set(currAssetRef, { amount: currAssetVal.amount - usdtCapitalMoved, initialUSDT: currAssetVal.initialUSDT, trades: currAssetVal.trades + 1 }); // very bad naming, usdtCapital is actually amount here, but rn I'm lazy
             batch.set(currUSDTRef, { capital: currUSDTVal.capital + amount});
             await batch.commit();
             res.status(200).end();

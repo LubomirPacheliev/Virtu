@@ -23,7 +23,7 @@ const Statistics = () => {
                 coin: symbol,
                 amount: Number(assetVal.amount).toFixed(2), 
                 earnedUSDT: (Number(usdtValue) - Number(assetVal.initialUSDT)).toFixed(2),
-                earnedPercentage: (Number(usdtValue) - Number(assetVal.initialUSDT)) / assetVal.initialUSDT * 100,
+                earnedPercentage: ((Number(usdtValue) - Number(assetVal.initialUSDT)) / assetVal.initialUSDT * 100).toFixed(2),
                 trades: assetVal.trades
             };
             assets.unshift(returnVal);

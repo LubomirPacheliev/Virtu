@@ -1,8 +1,8 @@
 import React, {useEffect, useRef} from 'react';
+import { ScaleLoader } from 'react-spinners';
 
-const Chart = props => {
+const Chart = ({ widgetProps, isChartLoading, setChartLoading }) => {
     const ref = useRef();
-    const { widgetProps } = props;
 
     useEffect(() => {
       let refValue;
@@ -12,6 +12,7 @@ const Chart = props => {
       script.src = 'https://s3.tradingview.com/tv.js';
       script.async = true;
       script.onload = () => {
+        setChartLoading(false);
         if (typeof TradingView != 'undefined') {
           new window.TradingView.widget({
             "width": "auto",
@@ -40,7 +41,7 @@ const Chart = props => {
       return () => {
           if (refValue) {
             while (refValue.firstChild) {
-              refValue.removeChild(refValue.firstChild);
+            refValue.removeChild(refValue.firstChild);
           }
         }
       }
@@ -48,6 +49,7 @@ const Chart = props => {
 
     return ( 
         <article className="chart" id="tradingview_05e64" ref={ref}>
+          {isChartLoading && <ScaleLoader />}
         </article>
     );
 }

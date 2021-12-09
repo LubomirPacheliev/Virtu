@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
-import { GridLoader } from 'react-spinners';
+import { GridLoader, PropagateLoader, ScaleLoader } from 'react-spinners';
 import { FirebaseContext } from '../../utils/firebase.js';
 import Balance from './Balance.js';
 import Cards from './Cards.js';
@@ -77,7 +77,7 @@ const Profile = () => {
     
     return (
         <section className="portfolio">
-            {isLoading && <GridLoader />}
+            {isLoading && <ScaleLoader />}
             {!isLoading && <Balance /> }
             {!isLoading && <Cards cards={cards}/>}
             {!isLoading && <Statistics rows={rows} />}

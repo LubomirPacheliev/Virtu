@@ -305,6 +305,7 @@ article.balances {
 .market-list-container {
 	margin-top: 7vh;
 	width: 80vw;
+	margin-left: 3%;
 
 	.main-list-component {
 		@include setFlex(column, flex-start);

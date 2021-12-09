@@ -8,6 +8,7 @@ import { portfolioContext } from '../../utils/portfolioContext';
 const TradePair = () => {
   const { symbol } = useParams();
   const [history, setHistory] = useState([]);
+  const [isChartLoading, setChartLoading] = useState(true);
 
   return (
     <section className="tradepair-section">
@@ -24,11 +25,12 @@ const TradePair = () => {
         "enable_publishing": false,
         "allow_symbol_change": false,
         "container_id": "tradingview_05e64"
-      }} />
-      <portfolioContext.Provider value={{history, setHistory}}>
+      }} isChartLoading={isChartLoading} setChartLoading={setChartLoading} />
+      {!isChartLoading && <portfolioContext.Provider value={{history, setHistory}}>
         <Order />
         <OrderHistory />
       </portfolioContext.Provider>
+      }
     </div>
     </section>
   );

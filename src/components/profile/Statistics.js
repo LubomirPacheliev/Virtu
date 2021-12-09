@@ -1,36 +1,6 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { useCookies } from 'react-cookie';
-import { FirebaseContext } from '../../utils/firebase';
+import React from 'react';
 
-const Statistics = () => {
-    const [cookies, setCookies] = useCookies();
-    const [rows, setRows] = useState([]);
-    const { firestore, firestoreInstance } = useContext(FirebaseContext);
-    const email = cookies.email;
-
-    useEffect( async () => {
-        const docs = await firestore.getDocs(firestore.collection(firestoreInstance, `assets/${email}/assets`));
-        const assetsRef = docs.docs;
-        const assets = [];
-        assetsRef.map(async (asset, i) => {
-            const symbol = asset.id;
-            const assetVal = await asset.data();
-            const ticker =  await fetch('https://api.binance.com/api/v3/ticker/24hr?symbol=' + symbol.toUpperCase() + 'USDT');
-            const parsedTicker = await ticker.json();
-            const usdtValue = Number(parsedTicker.lastPrice) * assetVal.amount;
-            const returnVal = {
-                img: "https://vectorified.com/image/ethereum-logo-vector-13.png", 
-                coin: symbol,
-                amount: Number(assetVal.amount).toFixed(2), 
-                earnedUSDT: (Number(usdtValue) - Number(assetVal.initialUSDT)).toFixed(2),
-                earnedPercentage: ((Number(usdtValue) - Number(assetVal.initialUSDT)) / assetVal.initialUSDT * 100).toFixed(2),
-                trades: assetVal.trades
-            };
-            assets.unshift(returnVal);
-            if (assets.length === assetsRef.length && assets.length < 6) setRows(assets);
-        });
-    }, []);
-
+const Statistics = ({rows}) => {
     return (
         <article className="statistic">
             <h3 className="one-em">statistics</h3>

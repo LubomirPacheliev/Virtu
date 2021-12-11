@@ -31,10 +31,13 @@ const SellForm = ({orderProps}) => {
         await setHistory(lastHistory => lastHistory.concat([{orderType, firstSymbol, secondSymbol, atPrice, atAmount, atCost}]));
     }
 
-    useEffect(() => setAtAmount(atCost * atPrice), []);
+    useEffect(() => {
+        setAtAmount(atCost * atPrice)
+    }, [atPrice]);
     useEffect(async () => {
         const docRef = await firestore.getDoc(firestore.doc(firestoreInstance, `assets/${email}/assets/${firstSymbol}`));
-        if (docRef.data().amount) setAvailable(docRef.data().amount.toFixed(2)) 
+        if (docRef.data().amount) setAvailable(docRef.data().amount.toFixed(2));
+        setAtAmount(atCost * atPrice)
     }, []);
 
     return (

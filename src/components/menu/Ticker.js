@@ -6,7 +6,7 @@ const Ticker = props => {
     const history = useHistory();
 
     const navigate = () => {
-        history.push(`/market/${ticker.s}`);
+        history.push(`/market/${ticker.symbol}`);
     }
 
     return (

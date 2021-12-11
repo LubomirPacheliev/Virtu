@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const binance = 'https://api.binance.com';
 const firebase = require('firebase-admin');
+const fetch = require('isomorphic-fetch');
 
 const serviceAccount = require('../admin-sdk-service/mainbase-2c441-firebase-adminsdk-kqwhn-4f6448f138.json');
 firebase.initializeApp({

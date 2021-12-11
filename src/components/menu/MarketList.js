@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { GridLoader, PropagateLoader, ScaleLoader } from 'react-spinners';
+import { ScaleLoader } from 'react-spinners';
+import fetch from 'isomorphic-fetch';
 import ChangeList from './Changelist.js';
 import MainList from './MainList.js';
 
 const MarketList = props => {
     const [tickers, setTickers] = useState([]);
     const [isLoading, setLoading] = useState(true);
-    useEffect(() => getTickers(setTickers, setLoading), [ setTickers ]);
+    useEffect(() => getTickers(setTickers, setLoading), [ setTickers, setLoading ]);
     return (
         <div className="market-list-container">
             {isLoading && <ScaleLoader/>}
@@ -22,16 +23,13 @@ const MarketList = props => {
 }
 
 const getTickers = async (setTickers, setLoading) => {
-    // We can't just use a fetch request here because of CORS, we either have to 
-    // use a proxy(slow) or make an entire back end for one request(not ideal either)
-    const socket = new WebSocket('wss://stream.binance.com:9443/ws/!ticker@arr');
-    socket.onmessage = msg => {
-        const tickers = JSON.parse(msg.data);
-        const sortedTickers = tickers.sort((tickA, tickB) => Number(tickB.c) - Number(tickA.c));
-        setTickers(sortedTickers);
-        setLoading(false);
-        socket.close();
-    }
+    const tickers = await fetch('/api/markets');
+    const parsed = await tickers.json();
+    console.log(parsed);
+    const sortedTickers = parsed.sort((tickA, tickB) => Number(tickB.lastPrice) - Number(tickA.lastPrice));
+    const filteredTickers = sortedTickers.filter(ticker => ticker.symbol.slice(3).toLowerCase() === 'usdt' || ticker.symbol.slice(2).toLowerCase() === 'usdt');
+    setTickers(filteredTickers);
+    setLoading(false);
 }
 
 export default MarketList;

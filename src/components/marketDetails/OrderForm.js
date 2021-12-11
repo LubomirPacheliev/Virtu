@@ -8,8 +8,8 @@ import { FirebaseContext } from '../../utils/firebase';
 const OrderForm = props => {
     const orderType = props.orderType;
     const [atPrice, setAtPrice] = useState(1);
-    const [atAmount, setAtAmount] = useState(1000);
-    const [atCost, setAtCost] = useState(1000);
+    const [atAmount, setAtAmount] = useState(1);
+    const [atCost, setAtCost] = useState(1);
     const {history, setHistory} = useContext(portfolioContext);
     const { firestore, firestoreInstance, email } = useContext(FirebaseContext);
 

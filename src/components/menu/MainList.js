@@ -29,7 +29,8 @@ const MainList = props => { // I want to kill myself because of how bad this com
         const searchSymbol = input.value.toUpperCase();
         if (searchSymbol.length === 0) setSearch('');
         const regex = new RegExp(searchSymbol);
-        const filteredGroups = groups.map(group => group.filter(innerGroup => regex.test(innerGroup.s)));
+        const filteredGroups = groups.map(group => group.filter(innerGroup => regex.test(innerGroup.symbol)));
+        console.log(filteredGroups);
         return filteredGroups.filter(group => group.length > 0).flat();
     }
 
@@ -49,7 +50,9 @@ const MainList = props => { // I want to kill myself because of how bad this com
                     {typeof groups[openTab] === 'undefined' 
                     || searchVal.length > 0
                     || groups[openTab].map((ticker, i) => <Ticker key={i} ticker={ticker} isMainList={true} />)}
-                    {searchVal && search(ref).map((ticker, i) => <Ticker key={i} ticker={ticker} isMainList={true} />)}
+                    {searchVal && search(ref)
+                    .map((ticker, i) => <Ticker key={i} ticker={ticker} isMainList={true} />)
+                    .filter(tab => tab.key < openTab + 8 && tab.key > openTab - 1 || tab.key === '0' || tab.key === `${groups.length - 20}`)}
                 </tbody>
             </table>
             <div className="tabs">

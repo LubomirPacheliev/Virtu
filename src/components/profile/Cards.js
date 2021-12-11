@@ -5,7 +5,9 @@ const Cards = ({cards}) => {
         <div>
             <h3 className="one-em">balances</h3>
             <article className="balances">
-                {cards.map((card, i) => returnCard(card, i))}
+                {cards.map((card, i) => {
+                    if (i < 5) return returnCard(card, i);
+                })}
             </article>
         </div>
     );

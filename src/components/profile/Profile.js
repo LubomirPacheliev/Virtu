@@ -44,8 +44,8 @@ const Profile = () => {
                 usdtValue: Number(usdtValue).toFixed(7)
             };
             assets.unshift(returnVal);
-            if (assets.length === 5) setCards(assets);
         });
+        setCards(assets);
     }, []);
 
     useEffect( async () => {
@@ -67,7 +67,7 @@ const Profile = () => {
                 trades: assetVal.trades
             };
             assets.unshift(returnVal);
-            if (assets.length === assetsRef.length && assets.length < 6) { 
+            if (assets.length === assetsRef.length && assets.length <= 6) { 
                 setRows(assets);
                 setLoading(false);
             }

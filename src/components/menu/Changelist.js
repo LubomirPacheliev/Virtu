@@ -12,7 +12,7 @@ const ChangeList = ({tickers}) => {
 }
 
 const TopGainers = ({tickers}) => {
-    const gainers = tickers.sort((tickerA, tickerB) => tickerB.P - tickerA.P).slice(0, 7);
+    const gainers = tickers.sort((tickerA, tickerB) => Number(tickerB.priceChangePercent) - Number(tickerA.priceChangePercent)).slice(0, 7);
     return (
         <div style={{"color": "white"}}>
             {gainers.map((ticker, i) => <Ticker key={i} ticker={ticker} isMainList={false} />)}
@@ -21,7 +21,7 @@ const TopGainers = ({tickers}) => {
 }
 
 const TopLosers = ({tickers}) => {
-    const losers = tickers.sort((tickerA, tickerB) => Number(tickerA.P) - Number(tickerB.P)).slice(0, 7);
+    const losers = tickers.sort((tickerA, tickerB) => Number(tickerA.priceChangePercent) - Number(tickerB.priceChangePercent)).slice(0, 7);
     return (
         <div>
             <p>top losers</p>

@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import Ticker from './Ticker.js';
 
 const MainList = props => { // I want to kill myself because of how bad this component is
-    const {tickers} = props;
+    const tickers = props.tickers.sort((tickA, tickB) => Number(tickB.lastPrice) - Number(tickA.lastPrice));
     const [openTab, setOpenTab] = useState(0);
     const [groups, setGroups] = useState([]);
     const [searchVal, setSearch] = useState('');
@@ -30,7 +30,6 @@ const MainList = props => { // I want to kill myself because of how bad this com
         if (searchSymbol.length === 0) setSearch('');
         const regex = new RegExp(searchSymbol);
         const filteredGroups = groups.map(group => group.filter(innerGroup => regex.test(innerGroup.symbol)));
-        console.log(filteredGroups);
         return filteredGroups.filter(group => group.length > 0).flat();
     }
 

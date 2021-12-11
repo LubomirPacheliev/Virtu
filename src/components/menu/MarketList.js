@@ -25,8 +25,7 @@ const MarketList = props => {
 const getTickers = async (setTickers, setLoading) => {
     const tickers = await fetch('/api/markets');
     const parsed = await tickers.json();
-    const sortedTickers = parsed.sort((tickA, tickB) => Number(tickB.lastPrice) - Number(tickA.lastPrice));
-    const filteredTickers = sortedTickers.filter(ticker => ticker.symbol.slice(3).toLowerCase() === 'usdt' || ticker.symbol.slice(2).toLowerCase() === 'usdt');
+    const filteredTickers = parsed.filter(ticker => ticker.symbol.slice(3).toLowerCase() === 'usdt' || ticker.symbol.slice(2).toLowerCase() === 'usdt');
     setTickers(filteredTickers);
     setLoading(false);
 }

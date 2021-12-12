@@ -16,16 +16,14 @@ const Statistics = ({rows}) => {
                     <tbody>
                         {rows.length < 1 && <p>No assets to analyse.</p> }
                         {rows.length > 0 && rows.map((row, i) => {
-                            if (i < 5) {
-                                return (
-                                    <tr key={i}>
-                                        <td><img src={row.img} />{row.coin}</td>
-                                        <td>{row.earnedUSDT}</td>
-                                        <td>{row.earnedPercentage}</td>
-                                        <td>{row.trades}</td>
-                                    </tr>
-                                );
-                            }
+                            return (
+                                <tr key={i}>
+                                    <td><img src={row.img} />{row.coin}</td>
+                                    <td>{row.earnedUSDT}</td>
+                                    <td>{row.earnedPercentage}</td>
+                                    <td>{row.trades}</td>
+                                </tr>
+                            );
                         })}
                     </tbody>
                     </table>

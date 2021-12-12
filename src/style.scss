@@ -48,10 +48,12 @@ main {
 		display: block;
 		width: calc(185% + 3.3px);
 		height: 812px;
+		z-index: -10;
 	}
 	
 	.custom-shape-divider-bottom-1638357497 .shape-fill {
 		fill: rgb(0, 0, 0);
+		z-index: -10;
 	}
 }
 
@@ -189,6 +191,12 @@ article.balances {
 		font-weight: 500;
 	}
 
+	tbody {
+		display: block;
+		height: 200px;
+		overflow-y: scroll;
+	}
+
 	.table>:not(:first-child) {
 		border-top: none;
 	}
@@ -196,6 +204,12 @@ article.balances {
 	th {
 		color: $active-link;
 		font-weight: 700;
+	}
+
+	tr {
+		display: table;
+		width: 100%;
+		table-layout: fixed;
 	}
 
 	h3 {

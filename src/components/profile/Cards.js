@@ -1,9 +1,15 @@
 import React from 'react';
 
 const Cards = ({cards}) => {
+    const backwards = '<';
+    const forwards = '>';
     return (
-        <div>
-            <h3 className="one-em">balances</h3>
+        <div className="cards-div">
+            <article className="balances-nav">
+                <h3 className="one-em">balances</h3>
+                <button className="backward">{backwards}</button>
+                <button className="forward">{forwards}</button>
+            </article>
             <article className="balances">
                 {cards.map((card, i) => {
                     if (i < 5) return returnCard(card, i);

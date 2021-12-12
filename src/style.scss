@@ -112,6 +112,7 @@ h3.one-em {
 article.balances {
 	@include setFlex(row, flex-start);
 	margin-top: 15px;
+	width: 100%;
 
 	.card {
 		width: 17%;
@@ -138,6 +139,36 @@ article.balances {
 
 		p {
 			font-size: 1em;
+		}
+	}
+}
+
+.cards-div {
+	@include setFlex(column, flex-end);
+	.balances-nav {
+		@include setFlex(row, center);
+		height: 45px;
+		width: 100%;
+		h3 {
+			margin-right: auto;
+		}
+		.forward, .backward {
+			justify-self: flex-end;
+			margin-left: auto;
+			height: min-content;
+			border: none;
+			background-color: transparent;
+			color: $background;
+			font-size: 55px;
+			padding: 0px;
+			margin: 0px;
+
+			&:hover {
+				color: $active-link;
+			}
+		}
+		.forward {
+			margin-right: 8%;
 		}
 	}
 }

@@ -23,16 +23,20 @@ const Register = ({asideRef}) => {
     });
 
     const registerFirebase = async () => {
-        if (passRef.current.value !== repassRef.current.value) return alert('password need to match');
+        if (passRef.current.value !== repassRef.current.value) return alert('passwords need to match');
         const user = { email: emailRef.current.value, password: passRef.current.value };
         await fetch('http://localhost:5000/auth/register', {
             method: 'POST', 
             body: JSON.stringify(user), 
             headers: {'Content-Type': 'application/json'}
         });
-        await auth.createUserWithEmailAndPassword(auth.getAuth(app), emailRef.current.value, passRef.current.value);
-        await setCookies('email', user.email);
-        history.push('/profile');
+        try {
+            await auth.createUserWithEmailAndPassword(auth.getAuth(app), emailRef.current.value, passRef.current.value);
+            setCookies('email', user.email);
+            history.push('/profile');
+        } catch(error) {
+            return alert(error.message);
+        }
     }
 
     return (

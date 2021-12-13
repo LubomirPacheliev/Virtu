@@ -31,13 +31,14 @@ const BuyForm = ({ orderProps }) => {
                 setError({error: false});
             }, 3000);
             return clearTimeout();
+        } else {
+            await fetch('http://localhost:5000/api/order/' + symbol, {
+                method: 'POST',
+                body: JSON.stringify({orderType, asset: firstSymbol, amount: atAmount, usdtCapitalMoved: atCost, email}),
+                headers: {'Content-Type': 'application/json'}
+            });
+            await setHistory(lastHistory => lastHistory.concat([{orderType, firstSymbol, secondSymbol, atPrice, atAmount, atCost}]));
         }
-        await fetch('http://localhost:5000/api/order/' + symbol, {
-            method: 'POST',
-            body: JSON.stringify({orderType, asset: firstSymbol, amount: atAmount, usdtCapitalMoved: atCost, email}),
-            headers: {'Content-Type': 'application/json'}
-        });
-        await setHistory(lastHistory => lastHistory.concat([{orderType, firstSymbol, secondSymbol, atPrice, atAmount, atCost}]));
     }
 
     useEffect(() => {

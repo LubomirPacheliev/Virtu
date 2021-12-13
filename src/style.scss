@@ -501,7 +501,7 @@ article.balances {
 .error-msg {
 	width: 17vw;
 	height: 80px;
-	background-color: rgba(216, 22, 22, 0.623);
+	background-color: rgba(216, 22, 22, 0.767);
 	color: $background;
 	font-size: 1.3em;
 	padding: 10px;
@@ -510,5 +510,11 @@ article.balances {
 		position: absolute;
 		bottom: 55vh;
 		left: 3vw;
+	}
+
+	&.auth-error {
+		position: absolute;
+		left: 80vw;
+		top: 2vh;
 	}
 }

@@ -1,8 +1,9 @@
-import React, { useEffect, useContext, useRef, createRef } from 'react';
+import React, { useEffect, useContext, useRef, createRef, useState } from 'react';
 import fetch from 'isomorphic-fetch';
 import { Link, useHistory} from 'react-router-dom';
 import { FirebaseContext } from '../../utils/firebase';
 import { useCookies } from 'react-cookie';
+import Notification from '../Notification';
 
 const Register = ({asideRef}) => {
     const history = useHistory();
@@ -13,7 +14,7 @@ const Register = ({asideRef}) => {
         createRef(),
         createRef()
     ];
-    
+    const [error, setError] = useState({});
 
     useEffect(() => {
         asideRef.current.style.display = 'none';
@@ -23,24 +24,29 @@ const Register = ({asideRef}) => {
     });
 
     const registerFirebase = async () => {
-        if (passRef.current.value !== repassRef.current.value) return alert('passwords need to match');
         const user = { email: emailRef.current.value, password: passRef.current.value };
-        await fetch('http://localhost:5000/auth/register', {
-            method: 'POST', 
-            body: JSON.stringify(user), 
-            headers: {'Content-Type': 'application/json'}
-        });
         try {
+            if (user.password !== repassRef.current.value) throw new Error("Passwords don't match");
+            await fetch('http://localhost:5000/auth/register', {
+                method: 'POST', 
+                body: JSON.stringify(user), 
+                headers: {'Content-Type': 'application/json'}
+            });
             await auth.createUserWithEmailAndPassword(auth.getAuth(app), emailRef.current.value, passRef.current.value);
             setCookies('email', user.email);
             history.push('/profile');
-        } catch(error) {
-            return alert(error.message);
+        } catch(e) {
+            setError({error: true, msg: e.message});
+            setTimeout(() => {
+                setError({error: false});
+            }, 30000);
+            return clearTimeout();
         }
     }
 
     return (
         <section className="auth">
+            {error.error && <Notification msg={error.msg} parent="auth-error" />}
             <article className="auth-bg"></article>
             <article className="auth-form">
                 <input type="text" placeholder="your email" ref={emailRef} />

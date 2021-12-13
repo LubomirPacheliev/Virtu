@@ -492,3 +492,23 @@ article.balances {
 		}
 	}
 }
+
+// INPUT VALIDATION BUBBLE
+// INPUT VALIDATION BUBBLE
+// INPUT VALIDATION BUBBLE
+// INPUT VALIDATION BUBBLE
+
+.error-msg {
+	width: 17vw;
+	height: 80px;
+	background-color: rgba(216, 22, 22, 0.623);
+	color: $background;
+	font-size: 1.3em;
+	padding: 10px;
+
+	&.orderform-error {
+		position: absolute;
+		bottom: 55vh;
+		left: 3vw;
+	}
+}

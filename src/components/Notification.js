@@ -1,10 +1,9 @@
 import React from 'react';
 
-const Notification = ({msg}) => {
+const Notification = ({msg, parent}) => {
     return (
-        <div className="error-msg">
+        <div className={"error-msg " + parent}>
             <p>{msg}</p>
-            <button>x</button>
         </div>
     );
 }

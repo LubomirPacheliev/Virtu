@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { portfolioContext } from '../../utils/portfolioContext';
 import { FirebaseContext } from '../../utils/firebase';
+import Notification from '../Notification';
 
 const BuyForm = ({ orderProps }) => {
     const {
@@ -14,6 +15,7 @@ const BuyForm = ({ orderProps }) => {
     const { symbol, email } = orderProps;
     const { firestore, firestoreInstance } = useContext(FirebaseContext);
     const [available, setAvailable] = useState(0);
+    const [error, setError] = useState({});
 
     const onCostInput = e => {
         const cost = Number(e.target.value);
@@ -23,6 +25,13 @@ const BuyForm = ({ orderProps }) => {
 
     const onBuyClick = async e => {
         e.preventDefault();
+        if (atCost > available) {
+            setError({error: true, msg: 'Insufficient balance'});
+            setTimeout(() => {
+                setError({error: false});
+            }, 3000);
+            return clearTimeout();
+        }
         await fetch('http://localhost:5000/api/order/' + symbol, {
             method: 'POST',
             body: JSON.stringify({orderType, asset: firstSymbol, amount: atAmount, usdtCapitalMoved: atCost, email}),
@@ -42,6 +51,7 @@ const BuyForm = ({ orderProps }) => {
 
     return (
         <div>
+            {error.error && <Notification msg={error.msg} parent="orderform-error" />}
             <p>available: {available} USDT</p>
             <label htmlFor="at-price">At {secondSymbol}</label><br />
             <input type="text" name="at-price" value={atPrice} />

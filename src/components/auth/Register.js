@@ -27,12 +27,12 @@ const Register = ({asideRef}) => {
         const user = { email: emailRef.current.value, password: passRef.current.value };
         try {
             if (user.password !== repassRef.current.value) throw new Error("Passwords don't match");
+            await auth.createUserWithEmailAndPassword(auth.getAuth(app), emailRef.current.value, passRef.current.value);
             await fetch('http://localhost:5000/auth/register', {
                 method: 'POST', 
                 body: JSON.stringify(user), 
                 headers: {'Content-Type': 'application/json'}
             });
-            await auth.createUserWithEmailAndPassword(auth.getAuth(app), emailRef.current.value, passRef.current.value);
             setCookies('email', user.email);
             history.push('/profile');
         } catch(e) {

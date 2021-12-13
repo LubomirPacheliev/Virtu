@@ -38,7 +38,7 @@ const Register = ({asideRef}) => {
             setError({error: true, msg: e.message});
             setTimeout(() => {
                 setError({error: false});
-            }, 30000);
+            }, 3000);
             return clearTimeout();
         }
     }

@@ -297,7 +297,7 @@ article.balances {
 
 			input {
 				max-width: 430px;
-				width: 20em;
+				width: 90%;
 				height: 3em;
 				background-color: #2d313aa8;
 				border: none;
@@ -350,6 +350,7 @@ article.balances {
 	}
 
 	.order-history-h1 {
+		margin: 2px;
 		font-size: 2em;
 		font-weight: 600;
 		font-family: monospace;

@@ -391,6 +391,7 @@ article.balances {
 			padding: 20px;
 			margin: 3%;
 			width: 15%;
+			min-width: fit-content;
 
 			p {
 				margin: 5px 0px;
@@ -437,7 +438,7 @@ article.balances {
 
 .auth {
 	margin-top: -3%;
-	height: 100vh;
+	height: 110vh;
 	width: 100vw;
 	background-image: url('./low-poly-grid-haikei.svg');
 	background-size: cover;
@@ -447,7 +448,7 @@ article.balances {
 	.auth-form {
 		@include setFlex(column, center);
 		justify-content: center;
-		height: 100vh;
+		height: 110vh;
 		width: 20vw;
 		background-color: $background;
 		color: $background;
@@ -484,7 +485,7 @@ article.balances {
 
 	.auth-goback {
 		position: relative;
-		bottom: 95vh;
+		bottom: 105vh;
 		margin: 0px 20px;
 		color: $grayed-text;
 		text-decoration: none;

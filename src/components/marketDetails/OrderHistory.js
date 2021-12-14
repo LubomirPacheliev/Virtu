@@ -11,7 +11,7 @@ const OrderHistory = () => {
     }
 
     return ( 
-        <div>
+        <div className='order-history-div'>
             <h1 className="order-history-h1">history</h1>
             <article className="order-history">
             <div className="order-history-list">

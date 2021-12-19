@@ -24,7 +24,10 @@ const App = () => {
             <li><Link to="/market/SOLUSDT">Market</Link></li>
             <li><Link to="/profile">My Portfolio</Link></li>
             {!cookies.auth && <li><Link to="/login">Login</Link></li>}
-            {cookies.auth && <li><Link to="/profile" onClick={() => removeCookie('auth')}>Logout</Link></li>}
+            {cookies.auth && <li><Link to="/profile" onClick={() => {
+              removeCookie('auth');
+              removeCookie('email');
+            }}>Logout</Link></li>}
           </ul>
         </aside>
         <Switch>

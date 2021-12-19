@@ -5,7 +5,7 @@ import fetch from 'isomorphic-fetch';
 import { useCookies } from 'react-cookie';
 import Notification from '../Notification';
 
-const Register = ({asideRef}) => {
+const Login = ({asideRef}) => {
     const history = useHistory();
     const { app, auth } = useContext(FirebaseContext);
     const [cookies, setCookies] = useCookies();
@@ -58,4 +58,4 @@ const Register = ({asideRef}) => {
     );
 }
  
-export default Register;
+export default Login;

@@ -7,6 +7,7 @@ import Profile from './components/profile/Profile.js';
 import Login from './components/auth/Login.js';
 import Register from './components/auth/Register.js';
 import './style.scss';
+import './responsive.scss';
 import { useCookies } from 'react-cookie';
 
 const App = () => {

@@ -1,0 +1,75 @@
+@media only screen and (max-width: 870px) {
+    main {
+        overflow-y: scroll;
+    }
+
+    .cards-div .balances {
+        flex-direction: column;
+        
+        .card {
+            margin:  5px;
+            width: 80%;
+        }
+    }
+
+    .statistic th, .statistic td {
+        color: white;
+    }
+
+    .balances-nav {
+        button.forward, button.backward {
+            position: relative;
+            right: 10%;
+        }
+    }
+
+   .main {
+       height: fit-content;
+   }
+
+   .auth {
+        .auth-form {
+            width: 30vw;
+        }
+    }
+
+    // aside {
+    //     flex-direction: row;
+    //     height: 80px;
+    //     width: 100%;
+    //     margin-bottom: 10px;
+    //     ul {
+    //         display: flex;
+    //         flex-direction: row;
+    //     }
+    // }
+}
+
+@media only screen and (max-width: 1100px) {
+    .TradePair {
+        overflow-y: scroll;
+        .chart {
+            width: 90%;
+        }
+        .order {
+            width: 30%;
+            margin-left: 60%;
+        }
+        .order-history-div {
+            width: 55%;
+            position: relative;
+            bottom: 46%;
+            height: 400px;
+
+            .order-history {
+                width: 100%;
+            }
+        }
+    }
+
+    .auth {
+        .auth-form {
+            width: 27vw;
+        }
+    }
+}

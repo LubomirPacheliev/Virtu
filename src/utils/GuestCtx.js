@@ -1,8 +1,8 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 export const GuestCtx = createContext(null);
 export default ({children}) => {
-    const ctxAssets = [{id: 'btc', amount: 0.01, initialUSDT: 400, trades: 0}];
-    const guestUSDT = 1000;
+    const [ctxAssets, setCtxAssets] = useState([{id: 'btc', amount: 0.01, initialUSDT: 400, trades: 0}]);
+    const [guestUSDT, setUSDT] = useState(1000);
     return (
         <GuestCtx.Provider value={{ctxAssets, guestUSDT}} >
             {children}

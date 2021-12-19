@@ -1,13 +1,15 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
-import { GridLoader, PropagateLoader, ScaleLoader } from 'react-spinners';
+import { ScaleLoader } from 'react-spinners';
 import { FirebaseContext } from '../../utils/firebase.js';
+import { GuestCtx } from '../../utils/GuestCtx.js';
 import Balance from './Balance.js';
 import Cards from './Cards.js';
 import Statistics from './Statistics.js';
 
 const Profile = () => {
     const { firestore, firestoreInstance } = useContext(FirebaseContext);
+    const { ctxAssets } = useContext(GuestCtx);
     const [ cookies ] = useCookies();
     const [cards, setCards] = useState([]);
     const [rows, setRows] = useState([]);
@@ -22,8 +24,13 @@ const Profile = () => {
     ];
     
     useEffect(async () => {
-        const docs = await firestore.getDocs(firestore.collection(firestoreInstance, `assets/${email}/assets`));
-        const assetsRef = docs.docs;
+        let assetsRef;
+        if (typeof email !== 'undefined') {
+            const docs = await firestore.getDocs(firestore.collection(firestoreInstance, `assets/${email}/assets`));
+            assetsRef = docs.docs;
+        } else {
+            assetsRef = ctxAssets;
+        }
         const assets = [];
         if (assetsRef.length < 5) {
             for (let i = assetsRef.length; i < 5; i++) {
@@ -32,7 +39,7 @@ const Profile = () => {
          }
         assetsRef.map(async (asset, i) => {
             const symbol = asset.id;
-            const assetVal = await asset.data();
+            const assetVal = typeof asset.data !== 'undefined' ? await asset.data() : asset;
             const ticker =  await fetch('https://api.binance.com/api/v3/ticker/24hr?symbol=' + symbol.toUpperCase() + 'USDT');
             const parsedTicker = await ticker.json();
             const usdtValue = Number(parsedTicker.lastPrice) * assetVal.amount;
@@ -49,12 +56,17 @@ const Profile = () => {
     }, []);
 
     useEffect( async () => {
-        const docs = await firestore.getDocs(firestore.collection(firestoreInstance, `assets/${email}/assets`));
-        const assetsRef = docs.docs;
+        let assetsRef;
+        if (typeof email !== 'undefined') {
+            const docs = await firestore.getDocs(firestore.collection(firestoreInstance, `assets/${email}/assets`));
+            assetsRef = docs.docs;
+        } else {
+            assetsRef = ctxAssets;
+        }
         const assets = [];
         assetsRef.map(async (asset, i) => {
             const symbol = asset.id;
-            const assetVal = await asset.data();
+            const assetVal = typeof asset.data !== 'undefined' ? await asset.data() : asset;
             const ticker =  await fetch('https://api.binance.com/api/v3/ticker/24hr?symbol=' + symbol.toUpperCase() + 'USDT');
             const parsedTicker = await ticker.json();
             const usdtValue = Number(parsedTicker.lastPrice) * assetVal.amount;

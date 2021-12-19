@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { portfolioContext } from '../../utils/portfolioContext';
 import { FirebaseContext } from '../../utils/firebase';
 import Notification from '../Notification';
+import { GuestCtx } from '../../utils/GuestCtx';
 
 const SellForm = ({orderProps}) => {
     const {
@@ -12,6 +13,7 @@ const SellForm = ({orderProps}) => {
         atCost, setAtCost,
         history, setHistory
     } = useContext(portfolioContext);
+    const {ctxAssets, guestUSDT, setCtxAssets, setUSDT} = useContext(GuestCtx);
     const { symbol, email } = orderProps;
     const { firestore, firestoreInstance } = useContext(FirebaseContext);
     const [available, setAvailable] = useState(0);
@@ -32,11 +34,27 @@ const SellForm = ({orderProps}) => {
             }, 3000);
             return clearTimeout();
         } else {
-            await fetch('http://localhost:5000/api/order/' + symbol, {
-                method: 'POST',
-                body: JSON.stringify({orderType, asset: firstSymbol, amount: atAmount, usdtCapitalMoved: atCost, email}),
-                headers: {'Content-Type': 'application/json'}
-            });
+            if (typeof email !== 'undefined') {
+                await fetch('http://localhost:5000/api/order/' + symbol, {
+                    method: 'POST',
+                    body: JSON.stringify({orderType, asset: firstSymbol, amount: atAmount, usdtCapitalMoved: atCost, email}),
+                    headers: {'Content-Type': 'application/json'}
+                });
+            } else {
+                await setUSDT(lastUSDT => lastUSDT + atAmount);
+                setAvailable(lastAvailable => lastAvailable - atCost);
+                let assetIndex;
+                const targetAsset = ctxAssets.filter((asset, i) => {
+                    assetIndex = i;
+                    if (asset.id.toUpperCase() === firstSymbol) return asset;
+                });
+                await setCtxAssets(lastAssets => {
+                    const returnAssets = lastAssets;
+                    returnAssets[assetIndex].amount -= Number(atCost);
+                    returnAssets[assetIndex].trades++;
+                    return returnAssets;
+                });
+            }
             await setHistory(lastHistory => lastHistory.concat([{orderType, firstSymbol, secondSymbol, atPrice, atAmount, atCost}]));
         }
     }
@@ -45,8 +63,13 @@ const SellForm = ({orderProps}) => {
         setAtAmount(atCost * atPrice)
     }, [atPrice]);
     useEffect(async () => {
-        const docRef = await firestore.getDoc(firestore.doc(firestoreInstance, `assets/${email}/assets/${firstSymbol}`));
-        if (docRef.data().amount) setAvailable(docRef.data().amount.toFixed(2));
+        if (typeof email !== 'undefined') {
+            const docRef = await firestore.getDoc(firestore.doc(firestoreInstance, `assets/${email}/assets/${firstSymbol}`));
+            if (docRef.data().amount) setAvailable(docRef.data().amount.toFixed(2));
+        } else {
+            const ctxAssetVal = ctxAssets.filter(asset => asset.id.toUpperCase() === firstSymbol)[0];
+            if (typeof ctxAssetVal !== 'undefined') setAvailable(ctxAssetVal.amount);
+        }
         setAtAmount(atCost * atPrice)
     }, []);
 

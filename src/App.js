@@ -30,6 +30,19 @@ const App = () => {
             }}>Logout</Link></li>}
           </ul>
         </aside>
+        <nav ref={ref}>
+        <h1>Virtu</h1>
+          <ul>
+            <li><Link to="/home">Markets</Link></li>
+            <li><Link to="/market/SOLUSDT">Market</Link></li>
+            <li><Link to="/profile">My Portfolio</Link></li>
+            {!cookies.auth && <li><Link to="/login">Login</Link></li>}
+            {cookies.auth && <li><Link to="/profile" onClick={() => {
+              removeCookie('auth');
+              removeCookie('email');
+            }}>Logout</Link></li>}
+          </ul>
+        </nav>
         <Switch>
           <Route path="/market/:symbol" component={ TradePair } />
           <Route path="/home" component={ MarketList } />

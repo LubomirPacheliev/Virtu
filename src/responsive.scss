@@ -1,3 +1,48 @@
+@media only screen and (max-width: 648px) {
+    $grayed-text: #6f7474;
+
+    main {
+        display: block;
+    }
+
+    aside {
+        display: none;
+    }
+
+    nav {
+        display: flex;
+        flex-direction: row;
+        height: 40px;
+        h1 {
+            margin-left: 1em;
+        }
+        ul {
+            margin-top: 0.5em;
+            margin-right: 10%;
+            display: flex;
+            flex-direction: row;
+            list-style-type: none;
+            li a {
+                color: $grayed-text;
+                text-decoration: none;
+                margin: 0.2em;
+                align-self: center;
+            }
+        }
+    }
+
+    .portfolio {
+        position: relative;
+        left: 5%;
+        bottom: 15%;
+        min-width: fit-content;
+        max-width: fit-content;
+        justify-self: flex-start;
+        
+    }
+
+}
+
 @media only screen and (max-width: 870px) {
     main {
         overflow-y: scroll;
@@ -32,17 +77,6 @@
             width: 30vw;
         }
     }
-
-    // aside {
-    //     flex-direction: row;
-    //     height: 80px;
-    //     width: 100%;
-    //     margin-bottom: 10px;
-    //     ul {
-    //         display: flex;
-    //         flex-direction: row;
-    //     }
-    // }
 }
 
 @media only screen and (max-width: 1100px) {

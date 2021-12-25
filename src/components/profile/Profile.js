@@ -22,7 +22,37 @@ const Profile = () => {
         { img: "https://cryptobuyersclub.co.uk/wp-content/uploads/2020/07/Stellar-XLM-Logo.png", coin: 'Lumens', amount: '0', usdtValue: '0', symbol: 'XLM' },
         { img: "https://static.coinpaprika.com/coin/sol-solana/logo.png?rev=10608559", coin: 'Solana', amount: '0', usdtValue: '0', symbol: 'SOL' }
     ];
-    
+
+    useEffect( async () => {
+        let assetsRef = [];
+        if (typeof email !== 'undefined') {
+            const docs = await firestore.getDocs(firestore.collection(firestoreInstance, `assets/${email}/assets`));
+            assetsRef = docs.docs;
+        } else {
+            assetsRef = ctxAssets;
+        }
+        const assets = [];
+        assetsRef.map(async (asset, i) => {
+            const symbol = asset.id;
+            const assetVal = typeof asset.data !== 'undefined' ? await asset.data() : asset;
+            const ticker =  await fetch('https://api.binance.com/api/v3/ticker/24hr?symbol=' + symbol.toUpperCase() + 'USDT');
+            const parsedTicker = await ticker.json();
+            const usdtValue = Number(parsedTicker.lastPrice) * assetVal.amount;
+            const returnVal = {
+                img: "https://vectorified.com/image/ethereum-logo-vector-13.png", 
+                coin: symbol,
+                amount: Number(assetVal.amount).toFixed(2), 
+                earnedUSDT: (Number(usdtValue) - Number(assetVal.initialUSDT)).toFixed(2),
+                earnedPercentage: ((Number(usdtValue) - Number(assetVal.initialUSDT)) / assetVal.initialUSDT * 100).toFixed(2),
+                trades: assetVal.trades
+            };
+            assets.unshift(returnVal);
+            if (assets.length === assetsRef.length && assets.length <= 6) { 
+                setRows(assets);
+            }
+        });
+    }, []);
+
     useEffect(async () => {
         let assetsRef;
         if (typeof email !== 'undefined') {
@@ -53,40 +83,9 @@ const Profile = () => {
             assets.unshift(returnVal);
         });
         setCards(assets);
+        setLoading(false);
     }, []);
 
-    useEffect( async () => {
-        let assetsRef;
-        if (typeof email !== 'undefined') {
-            const docs = await firestore.getDocs(firestore.collection(firestoreInstance, `assets/${email}/assets`));
-            assetsRef = docs.docs;
-        } else {
-            assetsRef = ctxAssets;
-        }
-        const assets = [];
-        assetsRef.map(async (asset, i) => {
-            const symbol = asset.id;
-            const assetVal = typeof asset.data !== 'undefined' ? await asset.data() : asset;
-            const ticker =  await fetch('https://api.binance.com/api/v3/ticker/24hr?symbol=' + symbol.toUpperCase() + 'USDT');
-            const parsedTicker = await ticker.json();
-            const usdtValue = Number(parsedTicker.lastPrice) * assetVal.amount;
-            const returnVal = {
-                img: "https://vectorified.com/image/ethereum-logo-vector-13.png", 
-                coin: symbol,
-                amount: Number(assetVal.amount).toFixed(2), 
-                earnedUSDT: (Number(usdtValue) - Number(assetVal.initialUSDT)).toFixed(2),
-                earnedPercentage: ((Number(usdtValue) - Number(assetVal.initialUSDT)) / assetVal.initialUSDT * 100).toFixed(2),
-                trades: assetVal.trades
-            };
-            assets.unshift(returnVal);
-            if (assets.length === assetsRef.length && assets.length <= 6) { 
-                setRows(assets);
-                setLoading(false);
-            }
-        });
-    }, []);
-
-    
     return (
         <section className="portfolio">
             {isLoading && <ScaleLoader />}

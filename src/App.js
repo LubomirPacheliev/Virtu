@@ -30,7 +30,7 @@ const App = () => {
             }}>Logout</Link></li>}
           </ul>
         </aside>
-        <nav ref={ref}>
+        <nav>
         <h1>Virtu</h1>
           <ul>
             <li><Link to="/home">Markets</Link></li>
